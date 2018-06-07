@@ -5,8 +5,6 @@
  */
 package votingsystem.model;
 
-import votingsystem.model.User;
-
 /**
  *
  * @author staff
