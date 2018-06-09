@@ -53,8 +53,4 @@ public class Storage {
     public static Candidate getCandidate(int ndx){
         return Storage.candidate.get(ndx);
     }
-    
-    public int hell(){
-        return 1;
-    }
 }
