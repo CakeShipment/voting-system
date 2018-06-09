@@ -18,6 +18,7 @@ public class Candidate {
     public Candidate(String lname,String fname, String type, int vote){
         this.Lname = lname;
         this.Fname = fname;
+        // President - Vice President - Senator - District Representative - Governor - Mayor 
         this.candType = type;
         this.voteNo = vote;
     }
