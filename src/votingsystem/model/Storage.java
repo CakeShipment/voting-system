@@ -12,22 +12,42 @@ import java.util.ArrayList;
  * @author staff
  */
 public class Storage {
-    private ArrayList<User> personsUser = new ArrayList();
-    private ArrayList<Candidate> candidate = new ArrayList();
+    private static ArrayList<User> personsUser = new ArrayList();
+    private static ArrayList<Candidate> candidate = new ArrayList();
     
-    public ArrayList getUserList(){
-        return this.personsUser;
+    public static ArrayList getUserList(){
+        return Storage.personsUser;
     }
     
-    public ArrayList getCandList(){
-        return this.candidate;
+    public static ArrayList getCandList(){
+        return Storage.candidate;
     }
     
-    public void addUserList(User p){
-        this.personsUser.add(p);
+    public static void addUserList(User p){
+        Storage.personsUser.add(p);
     }
     
-    public void addCandidate(Candidate o){
-        this.candidate.add(o);
+    public static void addCandidate(Candidate o){
+        Storage.candidate.add(o);
     }
+    
+    public static void removeUser(User u){
+        Storage.personsUser.remove(u);
+    }
+    
+    public static int getUserNdx(User u){
+        return Storage.personsUser.indexOf(u);
+    }
+    public static User getUser(int ndx){
+        return Storage.personsUser.get(ndx);
+    }
+    
+    public static int getCandNdx(Candidate u){
+        return Storage.candidate.indexOf(u);
+    }
+    
+    public static Candidate getCandidate(int ndx){
+        return Storage.candidate.get(ndx);
+    }
+    
 }

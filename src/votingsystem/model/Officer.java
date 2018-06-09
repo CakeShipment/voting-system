@@ -11,7 +11,7 @@ package votingsystem.model;
  */
 public class Officer extends User{
     public void AddCandidate(){
-        // to do
+        
     }
     
     public void RemoveCandidate(){
