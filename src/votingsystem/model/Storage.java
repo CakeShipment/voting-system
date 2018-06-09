@@ -35,6 +35,10 @@ public class Storage {
         Storage.personsUser.remove(u);
     }
     
+    public static void removeCandidate(Candidate u){
+        Storage.candidate.remove(u);
+    }
+    
     public static int getUserNdx(User u){
         return Storage.personsUser.indexOf(u);
     }
