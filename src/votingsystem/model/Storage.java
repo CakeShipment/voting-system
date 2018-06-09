@@ -54,4 +54,7 @@ public class Storage {
         return Storage.candidate.get(ndx);
     }
     
+    public int hell(){
+        return 1;
+    }
 }

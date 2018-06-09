@@ -15,6 +15,10 @@ public class Candidate {
     private int voteNo;
     
     public Candidate(String name, candType type, int vote){
+    private String candType;
+    private int voteNo;
+    
+    public Candidate(String name, String type, int vote){
         this.fullName = name;
         // President - Vice President - Senator - District Representative - Governor - Mayor 
         this.pos = type;
