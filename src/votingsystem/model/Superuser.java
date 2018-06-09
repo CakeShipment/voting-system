@@ -5,8 +5,26 @@ public class Superuser extends User{
     
     public static final String USERTYPE = "superuser";
     
+    //CONSTRUCTORS--------------------------------------------------------------
+    public Superuser() {
+        super();
+    }
+    
+    public Superuser(String name) {
+        super(name);
+    }
+    
+    public Superuser(String name, String pass) {
+        super(name, pass);
+    }
+    
+    public Superuser(String name, String pass, int age) {
+        super(name, pass, age);
+    }
+    
+    //CLASS METHODS-------------------------------------------------------------
     public void addUser(User p){
-        Storage.addUserList(p);
+        Storage.addUser(p);
     }
     
     public void removeUser(User p){
