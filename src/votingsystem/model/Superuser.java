@@ -1,17 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package votingsystem.model;
 import votingsystem.model.Storage.*;
-/**
- *
- * @author staff
- */
+
 public class Superuser extends User{
+    
+    public static final String USERTYPE = "superuser";
+    
+    //CONSTRUCTORS--------------------------------------------------------------
+    public Superuser() {
+        super();
+    }
+    
+    public Superuser(String name) {
+        super(name);
+    }
+    
+    public Superuser(String name, String pass) {
+        super(name, pass);
+    }
+    
+    public Superuser(String name, String pass, int age) {
+        super(name, pass, age);
+    }
+    
+    //CLASS METHODS-------------------------------------------------------------
     public void addUser(User p){
-        Storage.addUserList(p);
+        Storage.addUser(p);
     }
     
     public void removeUser(User p){

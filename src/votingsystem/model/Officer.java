@@ -1,15 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package votingsystem.model;
 import votingsystem.model.Storage.*;
-/**
- *
- * @author staff
- */
+
 public class Officer extends User{
+
+    public static final String USERTYPE = "officer";
+    
+    //CONSTRUCTORS--------------------------------------------------------------
+    public Officer() {
+        super();
+    }
+    
+    public Officer(String name) {
+        super(name);
+    }
+    
+    public Officer(String name, String pass) {
+        super(name, pass);
+    }
+    
+    public Officer(String name, String pass, int age) {
+        super(name, pass, age);
+    }
+    
+    //CLASS METHODS-------------------------------------------------------------
     public void AddCandidate(Candidate o){
         Storage.addCandidate(o);
     }
