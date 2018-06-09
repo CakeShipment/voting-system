@@ -2,6 +2,9 @@ package votingsystem.model;
 import votingsystem.model.Storage.*;
 
 public class Superuser extends User{
+    
+    public static final String USERTYPE = "superuser";
+    
     public void addUser(User p){
         Storage.addUserList(p);
     }

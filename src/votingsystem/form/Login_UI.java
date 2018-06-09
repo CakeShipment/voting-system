@@ -1,8 +1,8 @@
 package votingsystem.form;
 
-public class Login extends javax.swing.JFrame {
+public class Login_UI extends javax.swing.JFrame {
 
-    public Login() {
+    public Login_UI() {
         initComponents();
     }
 
@@ -75,12 +75,12 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Login_UI().setVisible(true);
             }
         });
     }

@@ -1,8 +1,8 @@
 package votingsystem.form;
 
-public class vote_page extends javax.swing.JFrame {
+public class Superuser_UI extends javax.swing.JFrame {
 
-    public vote_page() {
+    public Superuser_UI() {
         initComponents();
     }
 
@@ -36,12 +36,12 @@ public class vote_page extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vote_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Superuser_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vote_page().setVisible(true);
+                new Superuser_UI().setVisible(true);
             }
         });
     }
