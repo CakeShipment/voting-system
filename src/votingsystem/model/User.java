@@ -28,6 +28,7 @@ public class User {
         this.pass = pass;
     }
     
+    
     public void setName(String name){
         this.name = name;
     }
