@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package votingsystem.model;
 
 import java.util.UUID;
 
-/**
- *
- * @author staff
- */
 public class User {
     private String userId;
     private String name;
     private String pass;
+    private int age;
     
     User(){
         this.userId = UUID.randomUUID().toString();
@@ -37,6 +29,10 @@ public class User {
         this.pass = pass;
     }
     
+    public void setAge(int age){
+        this.age = age;
+    }
+    
     public String getName(){
         return this.name;
     }
@@ -44,4 +40,9 @@ public class User {
     public String getPass(){
         return this.pass;
     }
+    
+    public String getAge(){
+        return Integer.toString(this.age);
+    }
+    
 }
