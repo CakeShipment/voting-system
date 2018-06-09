@@ -10,22 +10,18 @@ package votingsystem.model;
  * @author staff
  */
 public class Candidate {
-    private String Lname;
-    private String Fname;
+    private String fullName;
     private String candType;
     private int voteNo;
     
-    public Candidate(String lname,String fname, String type, int vote){
-        this.Lname = lname;
-        this.Fname = fname;
+    public Candidate(String name, String type, int vote){
+        this.fullName = name;
         // President - Vice President - Senator - District Representative - Governor - Mayor 
         this.candType = type;
         this.voteNo = vote;
     }
     
     public String getFullName(){
-        String fullName = "";
-        fullName = this.Fname +" "+ this.Lname;
-        return fullName;
+        return this.fullName;
     }
 }

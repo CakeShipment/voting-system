@@ -18,8 +18,13 @@ public class VotingSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Storage store = new Storage();
-        store.addCandidate(new Candidate("Trump","Donald","President",0));
-        System.out.println(store.getCandList().get(0).getFullName());
+        Storage.addCandidate(new Candidate("Trump Donald","President",0));
+        Storage.addCandidate(new Candidate("Kasey Cuyos","Mayor",0));
+        Storage.addCandidate(new Candidate("Renz Suck","Vice President",0));
+        Storage.addCandidate(new Candidate("Dan Help","District Representative",0));
+        int candSize = Storage.getCandList().size();
+        for (int i = 0; i < candSize; i++){
+            System.out.println(Storage.getCandidate(i).getFullName());
+        }
     }   
 }
