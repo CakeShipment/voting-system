@@ -5,6 +5,9 @@
  */
 package votingsystem;
 
+import votingsystem.model.Storage;
+import votingsystem.model.Candidate;
+
 /**
  *
  * @author staff
@@ -15,7 +18,8 @@ public class VotingSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // HELLO THERE THE ANGEL FROM MY NIGHTMARE
-    }
-    
+        Storage store = new Storage();
+        store.addCandidate(new Candidate("Trump","Donald","President",0));
+        System.out.println(store.getCandList().get(0).getFullName());
+    }   
 }
