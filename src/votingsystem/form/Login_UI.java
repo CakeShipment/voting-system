@@ -79,7 +79,6 @@ public class Login_UI extends javax.swing.JFrame {
         boolean flag = false;
         String s;
         for(i = 0; i < userSize && (!Storage.getUser(i).getName().equals(username_field.getText()) && !Storage.getUser(i).getPass().equals(password_field.getText())); i++){}
-        System.out.println(Storage.getUser(0).getName().equals(username_field.getText()));
         if(i <= userSize){
             s = Storage.getUser(i).getClass().getName().toString();
             s = s.replace("votingsystem.model.", "");
