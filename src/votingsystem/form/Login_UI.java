@@ -1,5 +1,10 @@
 package votingsystem.form;
 
+import votingsystem.model.Storage;
+import votingsystem.form.Superuser_UI;
+import votingsystem.form.Officer_UI;
+import votingsystem.form.Voter_UI;
+
 public class Login_UI extends javax.swing.JFrame {
 
     public Login_UI() {
@@ -12,8 +17,8 @@ public class Login_UI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         username_field = new javax.swing.JTextField();
-        password_field = new javax.swing.JTextField();
         login_button = new javax.swing.JButton();
+        password_field = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -22,11 +27,7 @@ public class Login_UI extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("VUTAR");
 
-        username_field.setText("Username");
         username_field.setToolTipText("Username");
-
-        password_field.setText("Password");
-        password_field.setToolTipText("Username");
 
         login_button.setText("Login");
         login_button.addActionListener(new java.awt.event.ActionListener() {
@@ -34,6 +35,8 @@ public class Login_UI extends javax.swing.JFrame {
                 login_buttonActionPerformed(evt);
             }
         });
+
+        password_field.setToolTipText("Password");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -48,9 +51,9 @@ public class Login_UI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(password_field, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                             .addComponent(username_field)
-                            .addComponent(login_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(login_button, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                            .addComponent(password_field))
                         .addGap(113, 113, 113))))
         );
         layout.setVerticalGroup(
@@ -60,7 +63,7 @@ public class Login_UI extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(username_field, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(password_field, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(login_button)
@@ -71,7 +74,35 @@ public class Login_UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttonActionPerformed
-        System.out.println("hello");
+        int userSize  = Storage.getUserList().size();
+        int i;
+        boolean flag = false;
+        String s;
+        for(i = 0; i < userSize && (Storage.getUser(i).getName() == username_field.getText() && Storage.getUser(i).getPass() == password_field.getText()); i++){}
+        if(i < userSize){
+            s = Storage.getUser(i).getClass().getName().toString();
+            s = s.replace("votingsystem.model.", "");
+            switch(s){
+                case "Superuser":
+                    Superuser_UI su = new Superuser_UI();
+                    su.pack();
+                    su.setLocationRelativeTo(null);
+                    su.setVisible(true);
+                    break;
+                case "Officer":
+                    Officer_UI of = new Officer_UI();
+                    of.pack();
+                    of.setLocationRelativeTo(null);
+                    of.setVisible(true);
+                    break;
+                case "Voter":
+                    Voter_UI vt = new Voter_UI();
+                    vt.pack();
+                    vt.setLocationRelativeTo(null);
+                    vt.setVisible(true);
+                    break;
+            }
+        }
     }//GEN-LAST:event_login_buttonActionPerformed
 
     public static void main(String args[]) {
@@ -97,7 +128,7 @@ public class Login_UI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton login_button;
-    private javax.swing.JTextField password_field;
+    private javax.swing.JPasswordField password_field;
     private javax.swing.JTextField username_field;
     // End of variables declaration//GEN-END:variables
 }
