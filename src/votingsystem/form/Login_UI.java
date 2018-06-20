@@ -83,6 +83,7 @@ public class Login_UI extends javax.swing.JFrame {
             switch(s){
                 case "Superuser":
                     Superuser_UI su = new Superuser_UI();
+                    su.initTab();
                     su.pack();
                     su.setLocationRelativeTo(null);
                     su.open();
