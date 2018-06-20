@@ -1,10 +1,9 @@
 package votingsystem.model;
-import votingsystem.model.Storage.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Voter extends User{
-    
-    public static final String USERTYPE = "voter";
-    
+    public Voters_Storage vList = new Voters_Storage();
     //CONSTRUCTORS--------------------------------------------------------------
     public Voter() {
         super();
@@ -22,13 +21,45 @@ public class Voter extends User{
         super(name, pass, age);
     }
     
+    public Voter(String name, String pass, int age, Date dob) {
+        super(name, pass, age, dob);
+    }
+    
     //CLASS METHODS-------------------------------------------------------------
     private boolean isLegalAge (){
         return (Integer.parseInt(Storage.getUser(Storage.getUserNdx(this)).getAge()) >= 18);
     }
     
-    public void vote (){
+    public void vote (Candidate pres, Candidate vpres, Candidate mayor, Candidate gover, ArrayList<Candidate> repList, ArrayList<Candidate> senList,Candidate sen1, Candidate sen2, Candidate sen3, Candidate sen4, Candidate sen5, Candidate rep1, Candidate rep2, Candidate rep3, Candidate rep4){
+
+        Storage.getCandidate(Storage.getCandNdx(pres)).setVote(1);
+        Storage.getCandidate(Storage.getCandNdx(vpres)).setVote(1);
+        Storage.getCandidate(Storage.getCandNdx(mayor)).setVote(1);
+        Storage.getCandidate(Storage.getCandNdx(gover)).setVote(1);
         
+        for(int x = 0; x < repList.size(); x++){
+            repList.get(x).setVote(1);
+            vList.addVReps(repList.get(x));
+        }
+        
+        for(int y = 0; y < senList.size(); y++){
+            senList.get(y).setVote(1);
+            vList.addVSenator(senList.get(y));
+        }
+ //Just Remove the parameters if u guys want to have a list instead of 1 by 1 also the codes below
+//        vList.addVReps(rep1);
+//        vList.addVReps(rep2);
+//        vList.addVReps(rep3);
+//        vList.addVReps(rep4);
+//        vList.addVSenator(sen1);
+//        vList.addVSenator(sen2);
+//        vList.addVSenator(sen3);
+//        vList.addVSenator(sen4);
+//        vList.addVSenator(sen5);
+//        vList.setMayor(mayor);
+//        vList.setPres(pres);
+//        vList.setVPres(vpres);
+//        vList.setVGovernor(gover);
     }
     
 }

@@ -1,4 +1,5 @@
 package votingsystem.model;
+import java.util.Date;
 import votingsystem.model.Storage.*;
 
 public class Officer extends User{
@@ -20,6 +21,10 @@ public class Officer extends User{
     
     public Officer(String name, String pass, int age) {
         super(name, pass, age);
+    }
+    
+    public Officer(String name, String pass, int age, Date dob) {
+        super(name, pass, age, dob);
     }
     
     //CLASS METHODS-------------------------------------------------------------
