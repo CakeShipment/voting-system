@@ -36,8 +36,8 @@ public class Officer extends User{
     
     public Boolean UpdateCandidate(String name,int vote, Candidate p){
         if(Storage.editable){
-            Storage.getCandidate(Storage.getCandNdx(p)).setName(name);
-            Storage.getCandidate(Storage.getCandNdx(p)).setVote(vote);
+            Storage.getCandidate(Storage.getCandNdx(p), p.getCandType()).setName(name);
+            Storage.getCandidate(Storage.getCandNdx(p), p.getCandType()).setVote(vote);
             return true;
         }else{
             return false;

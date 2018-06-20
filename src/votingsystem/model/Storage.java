@@ -57,13 +57,43 @@ public class Storage {
 //        return Storage.candidate;
 //    }
 //    
-//    public static int getCandNdx(Candidate u){
-//        return Storage.candidate.indexOf(u);
-//    }
-//    
-//    public static Candidate getCandidate(int ndx){
-//        return Storage.candidate.get(ndx);
-//    }
+    public static int getCandNdx(Candidate u){
+        switch(u.getCandType()){
+            case "President": 
+                return Storage.presidents.indexOf(u);
+            case "Vice_President": 
+                return Storage.vice_presidents.indexOf(u);
+            case "Senator": 
+                return Storage.senators.indexOf(u);
+            case "District_Representative": 
+                return Storage.district_representatives.indexOf(u);
+            case "Governor": 
+                return Storage.governors.indexOf(u);
+            case "Mayor": 
+                return Storage.mayors.indexOf(u);
+            default:
+                return 0;
+        }
+    }
+    
+    public static Candidate getCandidate(int ndx, String type){
+       switch(type){
+            case "President": 
+                return Storage.presidents.get(ndx);
+            case "Vice_President": 
+                return Storage.vice_presidents.get(ndx);
+            case "Senator": 
+                return Storage.senators.get(ndx);
+            case "District_Representative": 
+                return Storage.district_representatives.get(ndx);
+            case "Governor": 
+                return Storage.governors.get(ndx);
+            case "Mayor": 
+                return Storage.mayors.get(ndx);
+            default:
+                return new Candidate("Error",Candidate.candType.Error,0);
+        }
+    }
     
     //REMOVING FROM LISTS-------------------------------------------------------
     public static void removeUser(User u){
@@ -71,7 +101,25 @@ public class Storage {
     }
     
     public static void removeCandidate(Candidate u){
-        Storage.candidate.remove(u);
+        switch(u.getCandType()){
+            case "President": 
+                Storage.presidents.remove(u);
+                break;
+            case "Vice_President": 
+                Storage.vice_presidents.remove(u);
+                break;
+            case "Senator": 
+                Storage.senators.remove(u);
+                break;
+            case "District_Representative": 
+                Storage.district_representatives.remove(u);
+                break;
+            case "Governor": 
+                Storage.governors.remove(u);
+                break;
+            case "Mayor": 
+                Storage.mayors.remove(u);
+        }
     }
 
 }

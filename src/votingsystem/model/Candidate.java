@@ -39,7 +39,7 @@ public class Candidate {
     }
     
     public enum candType{
-        President,Vice_President,Senator,District_Representative,Governor,Mayor
+        President,Vice_President,Senator,District_Representative,Governor,Mayor,Error
     }
     
     public void setVote(int vote){
