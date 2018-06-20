@@ -36,8 +36,13 @@ public class Officer extends User{
         Storage.removeCandidate(o);
     }
     
-    public void UpdateCandidate(String name,int vote, Candidate p){
-        Storage.getCandidate(Storage.getCandNdx(p)).setName(name);
-        Storage.getCandidate(Storage.getCandNdx(p)).setVote(vote);
+    public Boolean UpdateCandidate(String name,int vote, Candidate p){
+        if(p.getVote() <= 0){
+            Storage.getCandidate(Storage.getCandNdx(p)).setName(name);
+            Storage.getCandidate(Storage.getCandNdx(p)).setVote(vote);
+            return true;
+        }else{
+            return false;
+        }
     }
 }

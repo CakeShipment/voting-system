@@ -25,5 +25,8 @@ public class Candidate {
     public void setName(String name){
         this.fullName = name;
     }
+    public int getVote(){
+        return this.voteNo;
+    }
     
 }
