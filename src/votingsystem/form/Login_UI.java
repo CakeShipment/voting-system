@@ -78,10 +78,12 @@ public class Login_UI extends javax.swing.JFrame {
         int i;
         boolean flag = false;
         String s;
-        for(i = 0; i < userSize && (Storage.getUser(i).getName() == username_field.getText() && Storage.getUser(i).getPass() == password_field.getText()); i++){}
-        if(i < userSize){
+        for(i = 0; i < userSize && (!Storage.getUser(i).getName().equals(username_field.getText()) && !Storage.getUser(i).getPass().equals(password_field.getText())); i++){}
+        System.out.println(Storage.getUser(0).getName().equals(username_field.getText()));
+        if(i <= userSize){
             s = Storage.getUser(i).getClass().getName().toString();
             s = s.replace("votingsystem.model.", "");
+            System.out.println(s);
             switch(s){
                 case "Superuser":
                     Superuser_UI su = new Superuser_UI();
@@ -96,6 +98,7 @@ public class Login_UI extends javax.swing.JFrame {
                     of.setVisible(true);
                     break;
                 case "Voter":
+                    System.out.println("Voter");
                     Voter_UI vt = new Voter_UI();
                     vt.pack();
                     vt.setLocationRelativeTo(null);
