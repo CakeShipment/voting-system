@@ -75,5 +75,7 @@ public class User {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
         return dateFormat.format(DOB);
     }
-    
+    public String getID(){
+        return this.userId;
+    }
 }
