@@ -31,7 +31,7 @@ public class Voter extends User{
     }
     
     public Boolean vote (Candidate pres, Candidate vpres, Candidate mayor, Candidate gover, ArrayList<Candidate> repList, ArrayList<Candidate> senList,Candidate sen1, Candidate sen2, Candidate sen3, Candidate sen4, Candidate sen5, Candidate rep1, Candidate rep2, Candidate rep3, Candidate rep4){
-        if(pres != null && vpres != null && mayor != null && gover != null && repList.size() == 5 && senList.size() == 5 ){
+        if(pres != null && vpres != null && mayor != null && gover != null && repList.size() <= 5 && senList.size() <= 5 ){
             Storage.getCandidate(Storage.getCandNdx(pres)).setVote(1);
             Storage.getCandidate(Storage.getCandNdx(vpres)).setVote(1);
             Storage.getCandidate(Storage.getCandNdx(mayor)).setVote(1);
