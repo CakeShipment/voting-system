@@ -7,7 +7,6 @@ public class Candidate {
     
     public Candidate(String name, candType type, int vote){
         this.fullName = name;
-        // President - Vice President - Senator - District Representative - Governor - Mayor 
         this.pos = type;
         this.voteNo = vote;
     } 
@@ -21,28 +20,22 @@ public class Candidate {
     }
     
     public String getCandType (){
-        String type = "Error";
         switch(this.pos){
             case President:
-                type = "President";
-                break;
+                return "President";
             case Vice_President:
-                type = "Vice_President";
-                break;
+                return "Vice_President";
             case Senator:
-                type = "Senator";
-                break;
+                return "Senator";
             case District_Representative:
-                type = "District_Representative";
-                break;
+                return "District_Representative";
             case Governor:
-                type = "Governor";
-                break;
+                return "Governor";
             case Mayor:
-                type = "Mayor";
-                break;
+                return "Mayor";
+            default:
+                return "Error";
         }
-        return type;
     }
     
     public enum candType{
