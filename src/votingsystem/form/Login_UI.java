@@ -1,9 +1,6 @@
 package votingsystem.form;
 
 import votingsystem.model.Storage;
-import votingsystem.form.Superuser_UI;
-import votingsystem.form.Officer_UI;
-import votingsystem.form.Voter_UI;
 
 public class Login_UI extends javax.swing.JFrame {
 
@@ -80,7 +77,7 @@ public class Login_UI extends javax.swing.JFrame {
         String s;
         for(i = 0; i < userSize && (!Storage.getUser(i).getName().equals(username_field.getText()) && !Storage.getUser(i).getPass().equals(password_field.getText())); i++){}
         if(i <= userSize){
-            s = Storage.getUser(i).getClass().getName().toString();
+            s = Storage.getUser(i).getClass().getName();
             s = s.replace("votingsystem.model.", "");
             System.out.println(s);
             switch(s){

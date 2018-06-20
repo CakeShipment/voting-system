@@ -52,6 +52,7 @@ public class VotingSystem {
         Storage.addCandidate(new Candidate("Wilburn Ji-Yeong",Candidate.candType.District_Representative,0));
         Storage.addCandidate(new Candidate("Alfher Donata",Candidate.candType.Mayor,0));
         Storage.addCandidate(new Candidate("Félix Vlado",Candidate.candType.Mayor,0));
+        
         //ADDING USERS----------------------------------------------------------
         Storage.addUser(new Superuser("Superuser1", "pass1", 40));
         Storage.addUser(new Officer("Officer1", "pass2", 25));
