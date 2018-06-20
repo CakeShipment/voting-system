@@ -72,7 +72,7 @@ public class User {
     }
 
     public String getDOB(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(DOB);
     }
     public String getID(){
