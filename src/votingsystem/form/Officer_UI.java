@@ -1,9 +1,49 @@
 package votingsystem.form;
+import votingsystem.model.Storage;
 
 public class Officer_UI extends javax.swing.JFrame {
 
     public Officer_UI() {
         initComponents();
+        if(!Storage.editable){
+            disableEdit();
+        }
+    }
+    
+    private void disableEdit(){
+        president1.setEditable(false);
+        president2.setEditable(false);
+        president3.setEditable(false);
+        vPresident1.setEditable(false);
+        vPresident2.setEditable(false);
+        vPresident3.setEditable(false);
+        senator1.setEditable(false);
+        senator1.setEditable(false);
+        senator2.setEditable(false);
+        senator3.setEditable(false);
+        senator4.setEditable(false);
+        senator5.setEditable(false);
+        senator6.setEditable(false);
+        senator7.setEditable(false);
+        senator8.setEditable(false);
+        senator9.setEditable(false);
+        senator10.setEditable(false);
+        disRepresentative1.setEditable(false);
+        disRepresentative2.setEditable(false);
+        disRepresentative3.setEditable(false);
+        disRepresentative4.setEditable(false);
+        disRepresentative5.setEditable(false);
+        disRepresentative6.setEditable(false);
+        disRepresentative7.setEditable(false);
+        disRepresentative8.setEditable(false);
+        disRepresentative9.setEditable(false);
+        disRepresentative10.setEditable(false);
+        governor1.setEditable(false);
+        governor2.setEditable(false);
+        governor3.setEditable(false);
+        mayor1.setEditable(false);
+        mayor2.setEditable(false);
+        mayor3.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -368,10 +408,8 @@ public class Officer_UI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Officer_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Officer_UI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Officer_UI().setVisible(true);
         });
     }
 

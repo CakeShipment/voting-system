@@ -3,8 +3,6 @@ import java.util.Date;
 import votingsystem.model.Storage.*;
 
 public class Officer extends User{
-
-    public static final String USERTYPE = "officer";
     
     //CONSTRUCTORS--------------------------------------------------------------
     public Officer() {
@@ -37,7 +35,7 @@ public class Officer extends User{
     }
     
     public Boolean UpdateCandidate(String name,int vote, Candidate p){
-        if(p.getVote() <= 0){
+        if(Storage.editable){
             Storage.getCandidate(Storage.getCandNdx(p)).setName(name);
             Storage.getCandidate(Storage.getCandNdx(p)).setVote(vote);
             return true;

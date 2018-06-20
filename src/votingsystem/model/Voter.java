@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Voter extends User{
+    
     public Voters_Storage vList = new Voters_Storage();
+    
     //CONSTRUCTORS--------------------------------------------------------------
     public Voter() {
         super();
@@ -45,6 +47,9 @@ public class Voter extends User{
                 senList.get(y).setVote(1);
                 vList.addVSenator(senList.get(y));
             }
+            
+            Storage.editable = false;
+            
             return true;
         }else{
             return false;
