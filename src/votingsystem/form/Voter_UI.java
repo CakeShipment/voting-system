@@ -33,6 +33,7 @@ public class Voter_UI extends javax.swing.JFrame {
         mayorSelect = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("President");
 
@@ -178,7 +179,7 @@ public class Voter_UI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
+    public void open() {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -210,32 +211,8 @@ public class Voter_UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel label4;
-    private javax.swing.JLabel label5;
     private javax.swing.JComboBox<String> mayorSelect;
     private javax.swing.JComboBox<String> presidentSelect;
-    private javax.swing.JRadioButton senOption11;
-    private javax.swing.JRadioButton senOption12;
-    private javax.swing.JRadioButton senOption13;
-    private javax.swing.JRadioButton senOption14;
-    private javax.swing.JRadioButton senOption15;
-    private javax.swing.JRadioButton senOption16;
-    private javax.swing.JRadioButton senOption17;
-    private javax.swing.JRadioButton senOption18;
-    private javax.swing.JRadioButton senOption19;
-    private javax.swing.JRadioButton senOption20;
-    private javax.swing.JRadioButton senOption21;
-    private javax.swing.JRadioButton senOption22;
-    private javax.swing.JRadioButton senOption23;
-    private javax.swing.JRadioButton senOption24;
-    private javax.swing.JRadioButton senOption25;
-    private javax.swing.JRadioButton senOption26;
-    private javax.swing.JRadioButton senOption27;
-    private javax.swing.JRadioButton senOption28;
-    private javax.swing.JRadioButton senOption29;
-    private javax.swing.JRadioButton senOption30;
-    private javax.swing.JPanel senPanel1;
-    private javax.swing.JPanel senPanel2;
     private javax.swing.JComboBox<String> senatorSelect1;
     private javax.swing.JComboBox<String> senatorSelect2;
     private javax.swing.JComboBox<String> senatorSelect3;
