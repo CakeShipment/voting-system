@@ -49,20 +49,6 @@ public class Voter extends User{
         }else{
             return false;
         }
- //Just Remove the parameters if u guys want to have a list instead of 1 by 1 also the codes below
-//        vList.addVReps(rep1);
-//        vList.addVReps(rep2);
-//        vList.addVReps(rep3);
-//        vList.addVReps(rep4);
-//        vList.addVSenator(sen1);
-//        vList.addVSenator(sen2);
-//        vList.addVSenator(sen3);
-//        vList.addVSenator(sen4);
-//        vList.addVSenator(sen5);
-//        vList.setMayor(mayor);
-//        vList.setPres(pres);
-//        vList.setVPres(vpres);
-//        vList.setVGovernor(gover);
     }
     
 }
