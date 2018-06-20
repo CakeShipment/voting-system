@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Storage {
     private static ArrayList<User> personsUser = new ArrayList();
-    //private static ArrayList<Candidate> candidate = new ArrayList();
     
     private static ArrayList<Candidate> presidents = new ArrayList();
     private static ArrayList<Candidate> vice_presidents = new ArrayList();
@@ -48,7 +47,6 @@ public class Storage {
             case "Mayor": 
                 mayors.add(o);
         }
-        //Storage.candidate.add(o);
     }
     
     //GETTERS-------------------------------------------------------------------

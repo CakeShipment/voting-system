@@ -5,6 +5,7 @@ public class Officer_UI extends javax.swing.JFrame {
 
     public Officer_UI() {
         initComponents();
+        Storage.uneditable();
         setPlaceholders();
         if(!Storage.editable()){
             disableEdit();
@@ -391,6 +392,11 @@ public class Officer_UI extends javax.swing.JFrame {
         );
 
         closeButton.setText("Close / Update");
+        closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -438,6 +444,47 @@ public class Officer_UI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
+        new Login_UI().open();
+        
+        if(Storage.editable()){
+            Storage.getCandidate(0, "President").setName(president1.getText());
+            Storage.getCandidate(1, "President").setName(president2.getText());
+            Storage.getCandidate(2, "President").setName(president3.getText());
+            Storage.getCandidate(0, "Vice_President").setName(vPresident1.getText());
+            Storage.getCandidate(1, "Vice_President").setName(vPresident2.getText());
+            Storage.getCandidate(2, "Vice_President").setName(vPresident3.getText());
+            Storage.getCandidate(0, "Governor").setName(governor1.getText());
+            Storage.getCandidate(1, "Governor").setName(governor2.getText());
+            Storage.getCandidate(2, "Governor").setName(governor3.getText());
+            Storage.getCandidate(0, "Mayor").setName(mayor1.getText());
+            Storage.getCandidate(1, "Mayor").setName(mayor2.getText());
+            Storage.getCandidate(2, "Mayor").setName(mayor3.getText());
+            Storage.getCandidate(0, "Senator").setName(senator1.getText());
+            Storage.getCandidate(1, "Senator").setName(senator2.getText());
+            Storage.getCandidate(2, "Senator").setName(senator3.getText());
+            Storage.getCandidate(3, "Senator").setName(senator4.getText());
+            Storage.getCandidate(4, "Senator").setName(senator5.getText());
+            Storage.getCandidate(5, "Senator").setName(senator6.getText());
+            Storage.getCandidate(6, "Senator").setName(senator7.getText());
+            Storage.getCandidate(7, "Senator").setName(senator8.getText());
+            Storage.getCandidate(8, "Senator").setName(senator9.getText());
+            Storage.getCandidate(9, "Senator").setName(senator10.getText());
+            Storage.getCandidate(0, "District_Representative").setName(disRepresentative1.getText());
+            Storage.getCandidate(1, "District_Representative").setName(disRepresentative2.getText());
+            Storage.getCandidate(2, "District_Representative").setName(disRepresentative3.getText());
+            Storage.getCandidate(3, "District_Representative").setName(disRepresentative4.getText());
+            Storage.getCandidate(4, "District_Representative").setName(disRepresentative5.getText());
+            Storage.getCandidate(5, "District_Representative").setName(disRepresentative6.getText());
+            Storage.getCandidate(6, "District_Representative").setName(disRepresentative7.getText());
+            Storage.getCandidate(7, "District_Representative").setName(disRepresentative8.getText());
+            Storage.getCandidate(8, "District_Representative").setName(disRepresentative9.getText());
+            Storage.getCandidate(9, "District_Representative").setName(disRepresentative10.getText());
+        }
+            
+        this.dispose();
+    }//GEN-LAST:event_closeButtonMouseClicked
 
     public void open() {
 
