@@ -1,9 +1,8 @@
 package votingsystem.model;
+import java.util.Date;
 import votingsystem.model.Storage.*;
 
 public class Superuser extends User{
-    
-    public static final String USERTYPE = "superuser";
     
     //CONSTRUCTORS--------------------------------------------------------------
     public Superuser() {
@@ -20,6 +19,10 @@ public class Superuser extends User{
     
     public Superuser(String name, String pass, int age) {
         super(name, pass, age);
+    }
+    
+    public Superuser(String name, String pass, int age, Date dob) {
+        super(name, pass, age, dob);
     }
     
     //CLASS METHODS-------------------------------------------------------------

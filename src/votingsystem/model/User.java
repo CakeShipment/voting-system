@@ -1,4 +1,7 @@
 package votingsystem.model;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 public class User {
@@ -7,6 +10,7 @@ public class User {
     private String name;
     private String pass;
     private int age;
+    private Date DOB;
     
     //CONSTRUCTOR CHAINING------------------------------------------------------
     User(){
@@ -14,6 +18,7 @@ public class User {
         this.name = null;
         this.pass = null;
         this.age = 18;
+        this.DOB = null;
     }
     
     User(String name){
@@ -31,6 +36,11 @@ public class User {
         this(name, pass);
         this.age = age;
     }
+
+    User(String name, String pass, int age, Date bday){
+        this(name, pass, age);
+        this.DOB = bday;
+    }
     
     //CLASS METHODS-------------------------------------------------------------
     public void setName(String name){
@@ -45,6 +55,10 @@ public class User {
         this.age = age;
     }
     
+    public void setDOB(Date bday){
+        this.DOB = bday;
+    }
+    
     public String getName(){
         return this.name;
     }
@@ -55,6 +69,11 @@ public class User {
     
     public String getAge(){
         return Integer.toString(this.age);
+    }
+
+    public String getDOB(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        return dateFormat.format(DOB);
     }
     
 }

@@ -3,7 +3,7 @@ package votingsystem.model;
 public class Candidate {
     private String fullName;
     private candType pos;
-    private int voteNo;
+    private int voteNo = 0;
     
     public Candidate(String name, candType type, int vote){
         this.fullName = name;
