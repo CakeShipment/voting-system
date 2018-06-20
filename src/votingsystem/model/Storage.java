@@ -11,7 +11,17 @@ public class Storage {
     private static ArrayList<Candidate> district_representatives = new ArrayList();
     private static ArrayList<Candidate> governors = new ArrayList();
     private static ArrayList<Candidate> mayors = new ArrayList();
-    public static boolean editable = true; 
+    
+    private static boolean editable = true; 
+    
+    //EDITABLE FLAG METHODS-----------------------------------------------------
+    public static boolean editable(){//return true/fals
+        return editable;
+    }
+    
+    public static void uneditable(){//sets to false
+        editable = false;
+    }
     
     //ADDING TO LISTS-----------------------------------------------------------
     public static void addUser(User p){
@@ -53,10 +63,6 @@ public class Storage {
         return Storage.personsUser.get(ndx);
     }
     
-//    public static ArrayList getCandList(){ 
-//        return Storage.candidate;
-//    }
-//    
     public static int getCandNdx(Candidate u){
         switch(u.getCandType()){
             case "President": 
