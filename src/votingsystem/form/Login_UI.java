@@ -29,6 +29,11 @@ public class Login_UI extends javax.swing.JFrame {
         password_field.setToolTipText("Username");
 
         login_button.setText("Login");
+        login_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                login_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,6 +69,10 @@ public class Login_UI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttonActionPerformed
+        System.out.println("hello");
+    }//GEN-LAST:event_login_buttonActionPerformed
 
     public static void main(String args[]) {
 
