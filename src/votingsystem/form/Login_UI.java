@@ -1,9 +1,6 @@
 package votingsystem.form;
 
 import votingsystem.model.Storage;
-import votingsystem.form.Superuser_UI;
-import votingsystem.form.Officer_UI;
-import votingsystem.form.Voter_UI;
 
 public class Login_UI extends javax.swing.JFrame {
 
@@ -80,7 +77,7 @@ public class Login_UI extends javax.swing.JFrame {
         String s;
         for(i = 0; i < userSize && (!Storage.getUser(i).getName().equals(username_field.getText()) && !Storage.getUser(i).getPass().equals(password_field.getText())); i++){}
         if(i <= userSize){
-            s = Storage.getUser(i).getClass().getName().toString();
+            s = Storage.getUser(i).getClass().getName();
             s = s.replace("votingsystem.model.", "");
             System.out.println(s);
             switch(s){
@@ -88,26 +85,27 @@ public class Login_UI extends javax.swing.JFrame {
                     Superuser_UI su = new Superuser_UI();
                     su.pack();
                     su.setLocationRelativeTo(null);
-                    su.setVisible(true);
+                    su.open();
                     break;
                 case "Officer":
                     Officer_UI of = new Officer_UI();
                     of.pack();
                     of.setLocationRelativeTo(null);
-                    of.setVisible(true);
+                    of.open();
                     break;
                 case "Voter":
                     System.out.println("Voter");
                     Voter_UI vt = new Voter_UI();
                     vt.pack();
                     vt.setLocationRelativeTo(null);
-                    vt.setVisible(true);
+                    vt.open();
                     break;
             }
+            this.dispose();
         }
     }//GEN-LAST:event_login_buttonActionPerformed
 
-    public static void main(String args[]) {
+    public void open() {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -120,10 +118,8 @@ public class Login_UI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login_UI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login_UI().setVisible(true);
         });
     }
 

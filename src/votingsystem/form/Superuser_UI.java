@@ -26,7 +26,7 @@ public class Superuser_UI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
+    public void open() {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -39,10 +39,8 @@ public class Superuser_UI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Superuser_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Superuser_UI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Superuser_UI().setVisible(true);
         });
     }
 

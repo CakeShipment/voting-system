@@ -34,10 +34,10 @@ public class Voter extends User{
     
     public Boolean vote (Candidate pres, Candidate vpres, Candidate mayor, Candidate gover, ArrayList<Candidate> repList, ArrayList<Candidate> senList){
         if(pres != null && vpres != null && mayor != null && gover != null && repList.size() <= 5 && senList.size() <= 5 ){
-            Storage.getCandidate(Storage.getCandNdx(pres)).setVote(1);
-            Storage.getCandidate(Storage.getCandNdx(vpres)).setVote(1);
-            Storage.getCandidate(Storage.getCandNdx(mayor)).setVote(1);
-            Storage.getCandidate(Storage.getCandNdx(gover)).setVote(1);
+            Storage.getCandidate(Storage.getCandNdx(pres), pres.getCandType()).setVote(1);
+            Storage.getCandidate(Storage.getCandNdx(vpres), vpres.getCandType()).setVote(1);
+            Storage.getCandidate(Storage.getCandNdx(mayor), mayor.getCandType()).setVote(1);
+            Storage.getCandidate(Storage.getCandNdx(gover), gover.getCandType()).setVote(1);
 
             for(int x = 0; x < repList.size(); x++){
                 repList.get(x).setVote(1);
