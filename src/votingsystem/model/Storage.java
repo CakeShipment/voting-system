@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Storage {
     private static ArrayList<User> personsUser = new ArrayList();
     private static ArrayList<Candidate> candidate = new ArrayList();
-    public static boolean editable = false; 
+    public static boolean editable = true; 
     
     //ADDING TO LISTS-----------------------------------------------------------
     public static void addUser(User p){
