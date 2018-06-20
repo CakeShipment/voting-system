@@ -82,6 +82,25 @@ public class Storage {
         }
     }
     
+    public static ArrayList<Candidate> getCandList(String type){
+       switch(type){
+            case "President": 
+                return Storage.presidents;
+            case "Vice_President": 
+                return Storage.vice_presidents;
+            case "Senator": 
+                return Storage.senators;
+            case "District_Representative": 
+                return Storage.district_representatives;
+            case "Governor": 
+                return Storage.governors;
+            case "Mayor": 
+                return Storage.mayors;
+            default:
+                return null;
+        }
+    }
+    
     public static Candidate getCandidate(int ndx, String type){
        switch(type){
             case "President": 
@@ -97,7 +116,7 @@ public class Storage {
             case "Mayor": 
                 return Storage.mayors.get(ndx);
             default:
-                return new Candidate("Error",Candidate.candType.Error,0);
+                return null;
         }
     }
     

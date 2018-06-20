@@ -5,9 +5,45 @@ public class Officer_UI extends javax.swing.JFrame {
 
     public Officer_UI() {
         initComponents();
+        setPlaceholders();
         if(!Storage.editable()){
             disableEdit();
         }
+    }
+    
+    private void setPlaceholders(){
+        president1.setText(Storage.getCandidate(0, "President").getFullName());
+        president2.setText(Storage.getCandidate(1, "President").getFullName());
+        president3.setText(Storage.getCandidate(2, "President").getFullName());
+        vPresident1.setText(Storage.getCandidate(0, "Vice_President").getFullName());
+        vPresident2.setText(Storage.getCandidate(1, "Vice_President").getFullName());
+        vPresident3.setText(Storage.getCandidate(2, "Vice_President").getFullName());
+        senator1.setText(Storage.getCandidate(0, "Senator").getFullName());
+        senator2.setText(Storage.getCandidate(1, "Senator").getFullName());
+        senator3.setText(Storage.getCandidate(2, "Senator").getFullName());
+        senator4.setText(Storage.getCandidate(3, "Senator").getFullName());
+        senator5.setText(Storage.getCandidate(4, "Senator").getFullName());
+        senator6.setText(Storage.getCandidate(5, "Senator").getFullName());
+        senator7.setText(Storage.getCandidate(6, "Senator").getFullName());
+        senator8.setText(Storage.getCandidate(7, "Senator").getFullName());
+        senator9.setText(Storage.getCandidate(8, "Senator").getFullName());
+        senator10.setText(Storage.getCandidate(9, "Senator").getFullName());
+        disRepresentative1.setText(Storage.getCandidate(0, "District_Representative").getFullName());
+        disRepresentative2.setText(Storage.getCandidate(1, "District_Representative").getFullName());
+        disRepresentative3.setText(Storage.getCandidate(2, "District_Representative").getFullName());
+        disRepresentative4.setText(Storage.getCandidate(3, "District_Representative").getFullName());
+        disRepresentative5.setText(Storage.getCandidate(4, "District_Representative").getFullName());
+        disRepresentative6.setText(Storage.getCandidate(5, "District_Representative").getFullName());
+        disRepresentative7.setText(Storage.getCandidate(6, "District_Representative").getFullName());
+        disRepresentative8.setText(Storage.getCandidate(7, "District_Representative").getFullName());
+        disRepresentative9.setText(Storage.getCandidate(8, "District_Representative").getFullName());
+        disRepresentative10.setText(Storage.getCandidate(9, "District_Representative").getFullName());
+        governor1.setText(Storage.getCandidate(0, "Governor").getFullName());
+        governor2.setText(Storage.getCandidate(1, "Governor").getFullName());
+        governor3.setText(Storage.getCandidate(2, "Governor").getFullName());
+        mayor1.setText(Storage.getCandidate(0, "Mayor").getFullName());
+        mayor2.setText(Storage.getCandidate(1, "Mayor").getFullName());
+        mayor3.setText(Storage.getCandidate(2, "Mayor").getFullName());
     }
     
     private void disableEdit(){
@@ -17,7 +53,6 @@ public class Officer_UI extends javax.swing.JFrame {
         vPresident1.setEditable(false);
         vPresident2.setEditable(false);
         vPresident3.setEditable(false);
-        senator1.setEditable(false);
         senator1.setEditable(false);
         senator2.setEditable(false);
         senator3.setEditable(false);
