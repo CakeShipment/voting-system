@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package votingsystem.model;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author bernados
- */
 public class Voters_Storage {
     //Hmmmm should we include on getting an individual candidate per List in Vsenator and Vreps?
     private ArrayList<Candidate> vSenator = new ArrayList();
