@@ -11,34 +11,39 @@ public class Voter_UI extends javax.swing.JFrame {
     private String governor;
     private String mayor;
     
-    
+    private String tempSelect;
     
     public Voter_UI() {
         initComponents();
     }
     
     private String[] getCandidates(String type){
-        String temp[] = new String[3];
-        
-        for(int i = 0; i < 3; i++){
-            Storage.getCandidate(i, type).getFullName();
+        if(!type.equals("Senator") && !type.equals("District_Representative")){
+            String temp[] = new String[3];
+            for(int i = 0; i < 3; i++){
+                temp[i] = Storage.getCandidate(i, type).getFullName();
+            }
+            return temp;
         }
-        
-        return temp;
-    }
-    
-    private String[] getSenators(){
         Set<String> set = new HashSet<>();
-        
         for(int i = 0; i < 10; i++){
             set.add(Storage.getCandidate(i, "Senator").getFullName());
         }
-          
-        if(senators.isEmpty()){
-            return set.toArray(new String[set.size()]);
+        if(type.equals("Senator") && !senators.isEmpty()){
+            for(String s : senators){
+                if(set.contains(s)){
+                    set.remove(s);
+                }
+            }
         }
-        
-        return null;
+        if(type.equals("District_Representative") && !distReps.isEmpty()){
+            for(String s : distReps){
+                if(set.contains(s)){
+                    set.remove(s);
+                }
+            }
+        }
+        return set.toArray(new String[set.size()]);
     }
 
     @SuppressWarnings("unchecked")
@@ -83,14 +88,59 @@ public class Voter_UI extends javax.swing.JFrame {
                 senatorSelect1MouseClicked(evt);
             }
         });
+        senatorSelect1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                senatorSelect1ActionPerformed(evt);
+            }
+        });
 
         senatorSelect2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate"  }));
+        senatorSelect2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senatorSelect2MouseClicked(evt);
+            }
+        });
+        senatorSelect2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                senatorSelect2ActionPerformed(evt);
+            }
+        });
 
         senatorSelect3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        senatorSelect3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senatorSelect3MouseClicked(evt);
+            }
+        });
+        senatorSelect3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                senatorSelect3ActionPerformed(evt);
+            }
+        });
 
         senatorSelect4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        senatorSelect4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senatorSelect4MouseClicked(evt);
+            }
+        });
+        senatorSelect4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                senatorSelect4ActionPerformed(evt);
+            }
+        });
 
         senatorSelect5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        senatorSelect5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senatorSelect5MouseClicked(evt);
+            }
+        });
+        senatorSelect5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                senatorSelect5ActionPerformed(evt);
+            }
+        });
 
         presidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
         presidentSelect.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,11 +148,21 @@ public class Voter_UI extends javax.swing.JFrame {
                 presidentSelectMouseClicked(evt);
             }
         });
+        presidentSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                presidentSelectActionPerformed(evt);
+            }
+        });
 
         vPresidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
         vPresidentSelect.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 vPresidentSelectMouseClicked(evt);
+            }
+        });
+        vPresidentSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vPresidentSelectActionPerformed(evt);
             }
         });
 
@@ -240,15 +300,86 @@ public class Voter_UI extends javax.swing.JFrame {
 
     private void presidentSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_presidentSelectMouseClicked
         presidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("President")));
+        presidentSelect.showPopup();
     }//GEN-LAST:event_presidentSelectMouseClicked
 
     private void vPresidentSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPresidentSelectMouseClicked
         vPresidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("Vice_President")));
+        vPresidentSelect.showPopup();
     }//GEN-LAST:event_vPresidentSelectMouseClicked
 
     private void senatorSelect1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect1MouseClicked
-        senatorSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(getSenators()));
+        tempSelect = senatorSelect1.getSelectedItem().toString();
+        senatorSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("Senator")));
+        senatorSelect1.showPopup();
     }//GEN-LAST:event_senatorSelect1MouseClicked
+
+    private void senatorSelect1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senatorSelect1ActionPerformed
+        if(senators.contains(tempSelect)){
+            senators.remove(tempSelect);
+        }
+        senators.add(senatorSelect1.getSelectedItem().toString());
+    }//GEN-LAST:event_senatorSelect1ActionPerformed
+
+    private void senatorSelect2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect2MouseClicked
+        tempSelect = senatorSelect2.getSelectedItem().toString();
+        senatorSelect2.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("Senator")));
+        senatorSelect2.showPopup();
+    }//GEN-LAST:event_senatorSelect2MouseClicked
+
+    private void senatorSelect2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senatorSelect2ActionPerformed
+        if(senators.contains(tempSelect)){
+            senators.remove(tempSelect);
+        }
+        senators.add(senatorSelect2.getSelectedItem().toString());
+    }//GEN-LAST:event_senatorSelect2ActionPerformed
+
+    private void senatorSelect3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect3MouseClicked
+        tempSelect = senatorSelect3.getSelectedItem().toString();
+        senatorSelect3.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("Senator")));
+        senatorSelect3.showPopup();
+    }//GEN-LAST:event_senatorSelect3MouseClicked
+
+    private void senatorSelect3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senatorSelect3ActionPerformed
+        if(senators.contains(tempSelect)){
+            senators.remove(tempSelect);
+        }
+        senators.add(senatorSelect3.getSelectedItem().toString());
+    }//GEN-LAST:event_senatorSelect3ActionPerformed
+
+    private void senatorSelect4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect4MouseClicked
+        tempSelect = senatorSelect4.getSelectedItem().toString();
+        senatorSelect4.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("Senator")));
+        senatorSelect4.showPopup();
+    }//GEN-LAST:event_senatorSelect4MouseClicked
+
+    private void senatorSelect4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senatorSelect4ActionPerformed
+        if(senators.contains(tempSelect)){
+            senators.remove(tempSelect);
+        }
+        senators.add(senatorSelect4.getSelectedItem().toString());
+    }//GEN-LAST:event_senatorSelect4ActionPerformed
+
+    private void senatorSelect5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect5MouseClicked
+        tempSelect = senatorSelect5.getSelectedItem().toString();
+        senatorSelect5.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("Senator")));
+        senatorSelect5.showPopup();
+    }//GEN-LAST:event_senatorSelect5MouseClicked
+
+    private void senatorSelect5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senatorSelect5ActionPerformed
+        if(senators.contains(tempSelect)){
+            senators.remove(tempSelect);
+        }
+        senators.add(senatorSelect5.getSelectedItem().toString());
+    }//GEN-LAST:event_senatorSelect5ActionPerformed
+
+    private void presidentSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presidentSelectActionPerformed
+        president = presidentSelect.getSelectedItem().toString();
+    }//GEN-LAST:event_presidentSelectActionPerformed
+
+    private void vPresidentSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vPresidentSelectActionPerformed
+        vPresident = vPresidentSelect.getSelectedItem().toString();
+    }//GEN-LAST:event_vPresidentSelectActionPerformed
 
     public void open() {
 
