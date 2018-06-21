@@ -3,11 +3,46 @@ import votingsystem.model.Storage;
 
 public class Voter_UI extends javax.swing.JFrame {
     
-    private String []presidents = new String[3];
+    private String president;
+    private String vPresident;
+    private String senators[] = new String[5];
+    private String distReps[] = new String[4];
+    private String governor;
+    private String mayor;
     
     public Voter_UI() {
         initComponents();
-        
+    }
+    
+    private String[] getCandidates(String type){
+        switch(type){
+            case "President":
+                return new String[] {
+                    Storage.getCandidate(0, "President").getFullName(),
+                    Storage.getCandidate(1, "President").getFullName(),
+                    Storage.getCandidate(2, "President").getFullName()
+                };
+            case "Vice_President": 
+                return new String[] {
+                    Storage.getCandidate(0, "Vice_President").getFullName(),
+                    Storage.getCandidate(1, "Vice_President").getFullName(),
+                    Storage.getCandidate(2, "Vice_President").getFullName()
+                };
+            case "Senator": 
+            case "District_Representative": 
+            case "Governor": 
+                return new String[] {
+                    Storage.getCandidate(0, "Governor").getFullName(),
+                    Storage.getCandidate(1, "Governor").getFullName(),
+                    Storage.getCandidate(2, "Governor").getFullName()
+                };
+            default: 
+                return new String[] {
+                    Storage.getCandidate(0, "Mayor").getFullName(),
+                    Storage.getCandidate(1, "Mayor").getFullName(),
+                    Storage.getCandidate(2, "Mayor").getFullName()
+                };
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -16,15 +51,15 @@ public class Voter_UI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        presidentSelect = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        vPresidentSelect = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         senatorSelect1 = new javax.swing.JComboBox<>();
         senatorSelect2 = new javax.swing.JComboBox<>();
         senatorSelect3 = new javax.swing.JComboBox<>();
         senatorSelect4 = new javax.swing.JComboBox<>();
         senatorSelect5 = new javax.swing.JComboBox<>();
+        presidentSelect = new javax.swing.JComboBox<>();
+        vPresidentSelect = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         disRepresentativeSelect1 = new javax.swing.JComboBox<>();
@@ -35,36 +70,35 @@ public class Voter_UI extends javax.swing.JFrame {
         governorSelect = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         mayorSelect = new javax.swing.JComboBox<>();
+        voteBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setText("President");
 
-        presidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(presidents));
-
         jLabel2.setText("Vice President");
-
-        vPresidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Senators");
 
-        senatorSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        senatorSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
-        senatorSelect2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        senatorSelect2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate"  }));
 
-        senatorSelect3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        senatorSelect3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
-        senatorSelect4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        senatorSelect4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
-        senatorSelect5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        senatorSelect5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+
+        presidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+
+        vPresidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(presidentSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(vPresidentSelect, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(senatorSelect1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(senatorSelect2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(senatorSelect3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -76,6 +110,8 @@ public class Voter_UI extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(0, 263, Short.MAX_VALUE))
+            .addComponent(presidentSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(vPresidentSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,21 +139,21 @@ public class Voter_UI extends javax.swing.JFrame {
 
         jLabel4.setText("District Representatives");
 
-        disRepresentativeSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        disRepresentativeSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
-        disRepresentativeSelect2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        disRepresentativeSelect2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
-        disRepresentativeSelect3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        disRepresentativeSelect3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
-        disRepresentativeSelect4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        disRepresentativeSelect4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
         jLabel5.setText("Governor");
 
-        governorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        governorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
         jLabel6.setText("Senators");
 
-        mayorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        mayorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,16 +195,22 @@ public class Voter_UI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        voteBtn.setText("Vote!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(voteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +219,9 @@ public class Voter_UI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(26, 26, 26))
+                .addGap(18, 18, 18)
+                .addComponent(voteBtn)
+                .addContainerGap())
         );
 
         pack();
@@ -223,5 +267,6 @@ public class Voter_UI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> senatorSelect4;
     private javax.swing.JComboBox<String> senatorSelect5;
     private javax.swing.JComboBox<String> vPresidentSelect;
+    private javax.swing.JButton voteBtn;
     // End of variables declaration//GEN-END:variables
 }
