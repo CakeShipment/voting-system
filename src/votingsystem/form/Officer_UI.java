@@ -5,7 +5,6 @@ public class Officer_UI extends javax.swing.JFrame {
 
     public Officer_UI() {
         initComponents();
-        Storage.uneditable();
         setPlaceholders();
         if(!Storage.editable()){
             disableEdit();
