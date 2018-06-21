@@ -8,6 +8,14 @@ import votingsystem.model.Storage;
 import javax.swing.table.DefaultTableModel;
 import votingsystem.model.User;
 import java.util.ArrayList;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Collections;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -18,11 +26,15 @@ public class Superuser_UI extends javax.swing.JFrame {
     /**
      * Creates new form Superuser_UI
      */
+    
+    public String opt = "Delete";
+    private DefaultTableModel tableModel;
+    
+    
     public Superuser_UI() {
         initComponents();
         initTab();
     }
-    public String opt = "Delete";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -173,7 +185,32 @@ public class Superuser_UI extends javax.swing.JFrame {
             }
         });
     }
+    
    public void initTab(){
+        UserTab.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "DOB", "Type"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        });
+        
         DefaultTableModel model = (DefaultTableModel) UserTab.getModel();
         ArrayList<User> Ulists = Storage.getUserList();
         for(User li: Ulists){
@@ -181,11 +218,22 @@ public class Superuser_UI extends javax.swing.JFrame {
             s = s.replace("votingsystem.model.", "");
             Object[] row = {li.getID(),li.getName(),li.getDOB(),s};
             model.addRow(row);
-        } 
+        }
         
-
-
-       
+        UserTab.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table =(JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                int col = table.columnAtPoint(point);
+                 
+                if (mouseEvent.getClickCount() == 2 ) {
+                    // Double click
+                    System.out.println("Col: "+col+" Row:"+row);
+                }
+            }
+        });
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;

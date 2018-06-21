@@ -82,24 +82,24 @@ public class Login_UI extends javax.swing.JFrame {
             System.out.println(s);
             switch(s){
                 case "Superuser":
-                    Superuser_UI su = new Superuser_UI();
-                    su.pack();
-                    su.setLocationRelativeTo(null);
-                    su.open();
-                    break;
+                Superuser_UI su = new Superuser_UI();
+                su.pack();
+                su.setLocationRelativeTo(null);
+                su.open();
+                break;
                 case "Officer":
-                    Officer_UI of = new Officer_UI();
-                    of.pack();
-                    of.setLocationRelativeTo(null);
-                    of.open();
-                    break;
+                Officer_UI of = new Officer_UI();
+                of.pack();
+                of.setLocationRelativeTo(null);
+                of.open();
+                break;
                 case "Voter":
-                    System.out.println("Voter");
-                    Voter_UI vt = new Voter_UI();
-                    vt.pack();
-                    vt.setLocationRelativeTo(null);
-                    vt.open();
-                    break;
+                System.out.println("Voter");
+                Voter_UI vt = new Voter_UI();
+                vt.pack();
+                vt.setLocationRelativeTo(null);
+                vt.open();
+                break;
             }
             this.dispose();
         }
