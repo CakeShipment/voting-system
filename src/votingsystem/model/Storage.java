@@ -11,6 +11,8 @@ public class Storage {
     private static ArrayList<Candidate> governors = new ArrayList();
     private static ArrayList<Candidate> mayors = new ArrayList();
     
+    static ArrayList<String> voted = new ArrayList<>();
+    
     private static boolean editable = true; 
     
     //EDITABLE FLAG METHODS-----------------------------------------------------
@@ -49,7 +51,15 @@ public class Storage {
         }
     }
     
+    public static void setVoted(ArrayList<String> c){
+        voted.addAll(c);
+    }
+    
     //GETTERS-------------------------------------------------------------------
+    public static ArrayList<String> getVoted(){
+        return voted;
+    }
+    
     public static ArrayList getUserList(){
         return Storage.personsUser;
     }
@@ -113,6 +123,34 @@ public class Storage {
                 return Storage.governors.get(ndx);
             case "Mayor": 
                 return Storage.mayors.get(ndx);
+            default:
+                Candidate temp = new Candidate("", stringToType(type),0);
+                Storage.addCandidate(temp);
+                return temp;
+        }
+    }
+    
+    public static Candidate getCandidate(String name, String type){
+        int i = 0;
+        switch(type){
+            case "President": 
+                while(i < Storage.presidents.size() && !Storage.presidents.get(i).getFullName().equals(name)){ i++; }
+                return Storage.presidents.get(i);
+            case "Vice_President": 
+                while(i < Storage.vice_presidents.size() && !Storage.vice_presidents.get(i).getFullName().equals(name)){ i++; }
+                return Storage.vice_presidents.get(i);
+            case "Senator": 
+                while(i < Storage.senators.size() && !Storage.senators.get(i).getFullName().equals(name)){ i++; }
+                return Storage.senators.get(i);
+            case "District_Representative": 
+                while(i < Storage.district_representatives.size() && !Storage.district_representatives.get(i).getFullName().equals(name)){ i++; }
+                return Storage.district_representatives.get(i);
+            case "Governor": 
+                while(i < Storage.governors.size() && !Storage.governors.get(i).getFullName().equals(name)){ i++; }
+                return Storage.governors.get(i);
+            case "Mayor": 
+                while(i < Storage.mayors.size() && !Storage.mayors.get(i).getFullName().equals(name)){ i++; }
+                return Storage.mayors.get(i);
             default:
                 Candidate temp = new Candidate("", stringToType(type),0);
                 Storage.addCandidate(temp);
