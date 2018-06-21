@@ -1,5 +1,8 @@
 package votingsystem;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import votingsystem.model.Storage;
 import votingsystem.model.Candidate;
 import votingsystem.model.Superuser;
@@ -9,7 +12,7 @@ import votingsystem.form.Login_UI;
 
 public class VotingSystem {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         //ADDING PRESIDENTS-----------------------------------------------------
         Storage.addCandidate(new Candidate("Barack Obama",Candidate.candType.President,0));
         Storage.addCandidate(new Candidate("John McCain",Candidate.candType.President,0));
@@ -54,13 +57,13 @@ public class VotingSystem {
         Storage.addCandidate(new Candidate("Sjoerd Tshering",Candidate.candType.Mayor,0));
         
         //ADDING USERS----------------------------------------------------------
-        Storage.addUser(new Superuser("Superuser1", "pass1", 40));
-        Storage.addUser(new Officer("Officer1", "pass2", 25));
-        Storage.addUser(new Officer("Officer2", "pass3", 30));
-        Storage.addUser(new Voter("Voter1", "pass4", 18));
-        Storage.addUser(new Voter("Voter2", "pass5", 60));
-        Storage.addUser(new Voter("Voter3", "pass6", 24));
-        Storage.addUser(new Voter("Voter4", "voter4", 34));
+        Storage.addUser(new Superuser("Superuser1", "pass1", 40, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+        Storage.addUser(new Officer("Officer1", "pass2", 25, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+        Storage.addUser(new Officer("Officer2", "pass3", 30,new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+        Storage.addUser(new Voter("Voter1", "pass4", 18, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+        Storage.addUser(new Voter("Voter2", "pass5", 60, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+        Storage.addUser(new Voter("Voter3", "pass6", 24, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+        Storage.addUser(new Voter("Voter4", "voter4", 34, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
         
 //        int candSize = Storage.getCandList().size();
 //        for (int i = 0; i < candSize; i++){

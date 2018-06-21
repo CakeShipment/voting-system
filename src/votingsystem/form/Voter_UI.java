@@ -1,9 +1,13 @@
 package votingsystem.form;
+import votingsystem.model.Storage;
 
 public class Voter_UI extends javax.swing.JFrame {
-
+    
+    private String []presidents = new String[3];
+    
     public Voter_UI() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -37,7 +41,7 @@ public class Voter_UI extends javax.swing.JFrame {
 
         jLabel1.setText("President");
 
-        presidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        presidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(presidents));
 
         jLabel2.setText("Vice President");
 
