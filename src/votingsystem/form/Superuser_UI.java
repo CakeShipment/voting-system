@@ -10,6 +10,14 @@ import votingsystem.model.Storage;
 import javax.swing.table.DefaultTableModel;
 import votingsystem.model.User;
 import java.util.ArrayList;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Collections;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -20,13 +28,17 @@ public class Superuser_UI extends javax.swing.JFrame {
     /**
      * Creates new form Superuser_UI
      */
+    
+    public String opt = "Delete";
+    private DefaultTableModel tableModel;
+    private DefaultTableModel model;
+    
     public Superuser_UI() {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         initComponents();
         initTab();
     }
-    public String opt = "Delete";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,8 +55,14 @@ public class Superuser_UI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         Toggle = new javax.swing.JButton();
         AddButton = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
+        update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         UserTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,7 +87,10 @@ public class Superuser_UI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        UserTab.setGridColor(new java.awt.Color(255, 204, 204));
         jScrollPane1.setViewportView(UserTab);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         Toggle.setText("Delete");
         Toggle.addActionListener(new java.awt.event.ActionListener() {
@@ -85,24 +106,44 @@ public class Superuser_UI extends javax.swing.JFrame {
             }
         });
 
+        logout.setText("Log-Out");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AddButton)
-                .addGap(28, 28, 28)
+                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(update)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Toggle)
-                .addGap(20, 20, 20))
+                .addGap(18, 18, 18)
+                .addComponent(AddButton)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 28, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(0, 18, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddButton)
                     .addComponent(Toggle)
-                    .addComponent(AddButton)))
+                    .addComponent(logout)
+                    .addComponent(update))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -121,8 +162,8 @@ public class Superuser_UI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -153,8 +194,23 @@ public class Superuser_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_ToggleActionPerformed
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-        // TODO add your handling code here:
+        AddUser_UI au = new AddUser_UI();
+        au.pack();
+        au.setLocationRelativeTo(null);
+        au.setVisible(true);
     }//GEN-LAST:event_AddButtonActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        Login_UI login = new Login_UI();
+        login.pack();
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        this.UpdateTable();
+    }//GEN-LAST:event_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,19 +233,79 @@ public class Superuser_UI extends javax.swing.JFrame {
             }
         });
     }
-   public void initTab(){
-        DefaultTableModel model = (DefaultTableModel) UserTab.getModel();
+    
+    private void clearRows() {
+        int rowCount = UserTab.getRowCount();
+
+        for (int i = rowCount - 1; i >= 0; i--) {
+            this.model.removeRow(i);
+        }
+    }
+    
+    public void UpdateTable(){
+        this.clearRows();
         ArrayList<User> Ulists = Storage.getUserList();
         for(User li: Ulists){
             String s = li.getClass().getName();
             s = s.replace("votingsystem.model.", "");
-            Object[] row = {li.getID(),li.getName(),li.getDOB(),s};
-            model.addRow(row);
-        } 
+            if(!s.equals("Superuser")){
+                Object[] row = {li.getID(),li.getName(),li.getAge(),s};
+                this.model.addRow(row);
+            }
+        }
+    }
+    
+   public void initTab(){
+        UserTab.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Age", "Type"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        });
         
-
-
-       
+        
+        this.model = (DefaultTableModel) UserTab.getModel();
+        ArrayList<User> Ulists = Storage.getUserList();
+        for(User li: Ulists){
+            String s = li.getClass().getName();
+            s = s.replace("votingsystem.model.", "");
+            if(!s.equals("Superuser")){
+                Object[] row = {li.getID(),li.getName(),li.getAge(),s};
+                model.addRow(row);
+            }
+        }
+        
+        UserTab.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table =(JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                int col = table.columnAtPoint(point);
+                 
+                if (mouseEvent.getClickCount() == 2 ) {
+                    // Double click
+                    System.out.println("Col: "+col+" Row:"+row);
+                }
+            }
+        });
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
@@ -198,5 +314,7 @@ public class Superuser_UI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

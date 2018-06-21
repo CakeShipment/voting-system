@@ -74,6 +74,6 @@ public class VotingSystem {
         Login_UI login = new Login_UI();
         login.pack();
         login.setLocationRelativeTo(null);
-        login.open();
+        login.setVisible(true);
     }   
 }
