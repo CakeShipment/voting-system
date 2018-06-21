@@ -20,7 +20,9 @@ public class Superuser_UI extends javax.swing.JFrame {
      */
     public Superuser_UI() {
         initComponents();
+        initTab();
     }
+    public String opt = "Delete";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,15 +37,14 @@ public class Superuser_UI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         UserTab = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Toggle = new javax.swing.JButton();
+        AddButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         UserTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Name", "DOB", "Type"
@@ -52,18 +53,33 @@ public class Superuser_UI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(UserTab);
 
-        jButton1.setText("jButton1");
+        Toggle.setText("Delete");
+        Toggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToggleActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
-
-        jButton3.setText("jButton3");
+        AddButton.setText("Add");
+        AddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -71,11 +87,9 @@ public class Superuser_UI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(29, 29, 29)
-                .addComponent(jButton2)
+                .addComponent(AddButton)
                 .addGap(28, 28, 28)
-                .addComponent(jButton1)
+                .addComponent(Toggle)
                 .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
@@ -83,9 +97,8 @@ public class Superuser_UI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 28, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)))
+                    .addComponent(Toggle)
+                    .addComponent(AddButton)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -123,6 +136,22 @@ public class Superuser_UI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToggleActionPerformed
+        // TODO add your handling code here:
+        if(opt == "Delete"){
+            Toggle.setText("Edit");
+            opt = "Edit";
+        }else{
+            Toggle.setText("Delete");
+            opt = "Delete";
+        }
+        
+    }//GEN-LAST:event_ToggleActionPerformed
+
+    private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -150,18 +179,18 @@ public class Superuser_UI extends javax.swing.JFrame {
         for(User li: Ulists){
             String s = li.getClass().getName();
             s = s.replace("votingsystem.model.", "");
-            model.addRow(new Object[]{li.getID(),li.getName(),li.getDOB(),s});
-        }
+            Object[] row = {li.getID(),li.getName(),li.getDOB(),s};
+            model.addRow(row);
+        } 
         
 
 
        
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddButton;
+    private javax.swing.JButton Toggle;
     private javax.swing.JTable UserTab;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
