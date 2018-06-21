@@ -1,9 +1,13 @@
 package votingsystem.form;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import votingsystem.model.Storage;
 
 public class Officer_UI extends javax.swing.JFrame {
 
     public Officer_UI() {
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         initComponents();
         setPlaceholders();
         if(!Storage.editable()){

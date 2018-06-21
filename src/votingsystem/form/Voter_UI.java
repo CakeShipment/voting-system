@@ -1,5 +1,8 @@
 package votingsystem.form;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.*;
+import java.util.stream.*;
 import votingsystem.model.Storage;
 
 public class Voter_UI extends javax.swing.JFrame {
@@ -13,7 +16,11 @@ public class Voter_UI extends javax.swing.JFrame {
     
     private String tempSelect;
     
+    private int [] val = {0,0,0,0,0,0,0,0,0,0,0,0,0};
+    
     public Voter_UI() {
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         initComponents();
     }
     
@@ -27,23 +34,22 @@ public class Voter_UI extends javax.swing.JFrame {
         }
         Set<String> set = new HashSet<>();
         for(int i = 0; i < 10; i++){
-            set.add(Storage.getCandidate(i, "Senator").getFullName());
+            set.add(Storage.getCandidate(i, type).getFullName());
         }
         if(type.equals("Senator") && !senators.isEmpty()){
-            for(String s : senators){
-                if(set.contains(s)){
-                    set.remove(s);
-                }
-            }
+            senators.stream().filter((s) -> (set.contains(s))).forEachOrdered(set::remove);
         }
         if(type.equals("District_Representative") && !distReps.isEmpty()){
-            for(String s : distReps){
-                if(set.contains(s)){
-                    set.remove(s);
-                }
-            }
+            distReps.stream().filter((s) -> (set.contains(s))).forEachOrdered(set::remove);
         }
         return set.toArray(new String[set.size()]);
+    }
+    
+    private void validateVote(int i){
+        val[i] = 1;
+        if(IntStream.of(val).sum() == 13){
+            voteBtn.setEnabled(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -211,20 +217,80 @@ public class Voter_UI extends javax.swing.JFrame {
         jLabel4.setText("District Representatives");
 
         disRepresentativeSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        disRepresentativeSelect1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                disRepresentativeSelect1MouseClicked(evt);
+            }
+        });
+        disRepresentativeSelect1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disRepresentativeSelect1ActionPerformed(evt);
+            }
+        });
 
         disRepresentativeSelect2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        disRepresentativeSelect2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                disRepresentativeSelect2MouseClicked(evt);
+            }
+        });
+        disRepresentativeSelect2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disRepresentativeSelect2ActionPerformed(evt);
+            }
+        });
 
         disRepresentativeSelect3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        disRepresentativeSelect3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                disRepresentativeSelect3MouseClicked(evt);
+            }
+        });
+        disRepresentativeSelect3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disRepresentativeSelect3ActionPerformed(evt);
+            }
+        });
 
         disRepresentativeSelect4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        disRepresentativeSelect4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                disRepresentativeSelect4MouseClicked(evt);
+            }
+        });
+        disRepresentativeSelect4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disRepresentativeSelect4ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Governor");
 
         governorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        governorSelect.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                governorSelectMouseClicked(evt);
+            }
+        });
+        governorSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                governorSelectActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Senators");
 
         mayorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        mayorSelect.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mayorSelectMouseClicked(evt);
+            }
+        });
+        mayorSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mayorSelectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -267,6 +333,12 @@ public class Voter_UI extends javax.swing.JFrame {
         );
 
         voteBtn.setText("Vote!");
+        voteBtn.setEnabled(false);
+        voteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voteBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -319,6 +391,7 @@ public class Voter_UI extends javax.swing.JFrame {
             senators.remove(tempSelect);
         }
         senators.add(senatorSelect1.getSelectedItem().toString());
+        validateVote(0);
     }//GEN-LAST:event_senatorSelect1ActionPerformed
 
     private void senatorSelect2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect2MouseClicked
@@ -332,6 +405,7 @@ public class Voter_UI extends javax.swing.JFrame {
             senators.remove(tempSelect);
         }
         senators.add(senatorSelect2.getSelectedItem().toString());
+        validateVote(1);
     }//GEN-LAST:event_senatorSelect2ActionPerformed
 
     private void senatorSelect3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect3MouseClicked
@@ -345,6 +419,7 @@ public class Voter_UI extends javax.swing.JFrame {
             senators.remove(tempSelect);
         }
         senators.add(senatorSelect3.getSelectedItem().toString());
+        validateVote(2);
     }//GEN-LAST:event_senatorSelect3ActionPerformed
 
     private void senatorSelect4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect4MouseClicked
@@ -358,6 +433,7 @@ public class Voter_UI extends javax.swing.JFrame {
             senators.remove(tempSelect);
         }
         senators.add(senatorSelect4.getSelectedItem().toString());
+        validateVote(3);
     }//GEN-LAST:event_senatorSelect4ActionPerformed
 
     private void senatorSelect5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect5MouseClicked
@@ -371,15 +447,119 @@ public class Voter_UI extends javax.swing.JFrame {
             senators.remove(tempSelect);
         }
         senators.add(senatorSelect5.getSelectedItem().toString());
+        validateVote(4);
     }//GEN-LAST:event_senatorSelect5ActionPerformed
 
     private void presidentSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presidentSelectActionPerformed
         president = presidentSelect.getSelectedItem().toString();
+        validateVote(5);
     }//GEN-LAST:event_presidentSelectActionPerformed
 
     private void vPresidentSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vPresidentSelectActionPerformed
         vPresident = vPresidentSelect.getSelectedItem().toString();
+        validateVote(6);
     }//GEN-LAST:event_vPresidentSelectActionPerformed
+
+    private void disRepresentativeSelect1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disRepresentativeSelect1MouseClicked
+        tempSelect = disRepresentativeSelect1.getSelectedItem().toString();
+        disRepresentativeSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("District_Representative")));
+        disRepresentativeSelect1.showPopup();
+    }//GEN-LAST:event_disRepresentativeSelect1MouseClicked
+
+    private void disRepresentativeSelect1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disRepresentativeSelect1ActionPerformed
+        if(distReps.contains(tempSelect)){
+            distReps.remove(tempSelect);
+        }
+        distReps.add(disRepresentativeSelect1.getSelectedItem().toString());
+        validateVote(7);
+    }//GEN-LAST:event_disRepresentativeSelect1ActionPerformed
+
+    private void disRepresentativeSelect2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disRepresentativeSelect2MouseClicked
+        tempSelect = disRepresentativeSelect2.getSelectedItem().toString();
+        disRepresentativeSelect2.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("District_Representative")));
+        disRepresentativeSelect2.showPopup();
+    }//GEN-LAST:event_disRepresentativeSelect2MouseClicked
+
+    private void disRepresentativeSelect2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disRepresentativeSelect2ActionPerformed
+        if(distReps.contains(tempSelect)){
+            distReps.remove(tempSelect);
+        }
+        distReps.add(disRepresentativeSelect2.getSelectedItem().toString());
+        validateVote(8);
+    }//GEN-LAST:event_disRepresentativeSelect2ActionPerformed
+
+    private void disRepresentativeSelect3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disRepresentativeSelect3MouseClicked
+        tempSelect = disRepresentativeSelect3.getSelectedItem().toString();
+        disRepresentativeSelect3.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("District_Representative")));
+        disRepresentativeSelect3.showPopup();
+    }//GEN-LAST:event_disRepresentativeSelect3MouseClicked
+
+    private void disRepresentativeSelect3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disRepresentativeSelect3ActionPerformed
+        if(distReps.contains(tempSelect)){
+            distReps.remove(tempSelect);
+        }
+        distReps.add(disRepresentativeSelect3.getSelectedItem().toString());
+        validateVote(9);
+    }//GEN-LAST:event_disRepresentativeSelect3ActionPerformed
+
+    private void disRepresentativeSelect4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disRepresentativeSelect4MouseClicked
+        tempSelect = disRepresentativeSelect4.getSelectedItem().toString();
+        disRepresentativeSelect4.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("District_Representative")));
+        disRepresentativeSelect4.showPopup();
+    }//GEN-LAST:event_disRepresentativeSelect4MouseClicked
+
+    private void disRepresentativeSelect4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disRepresentativeSelect4ActionPerformed
+        if(distReps.contains(tempSelect)){
+            distReps.remove(tempSelect);
+        }
+        distReps.add(disRepresentativeSelect4.getSelectedItem().toString());
+        validateVote(10);
+    }//GEN-LAST:event_disRepresentativeSelect4ActionPerformed
+
+    private void governorSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_governorSelectMouseClicked
+        governorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("Governor")));
+        governorSelect.showPopup();
+    }//GEN-LAST:event_governorSelectMouseClicked
+
+    private void governorSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_governorSelectActionPerformed
+        governor = governorSelect.getSelectedItem().toString();
+        validateVote(11);
+    }//GEN-LAST:event_governorSelectActionPerformed
+
+    private void mayorSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mayorSelectMouseClicked
+        mayorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("Mayor")));
+        mayorSelect.showPopup();
+    }//GEN-LAST:event_mayorSelectMouseClicked
+
+    private void mayorSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mayorSelectActionPerformed
+        mayor = mayorSelect.getSelectedItem().toString();
+        validateVote(12);
+    }//GEN-LAST:event_mayorSelectActionPerformed
+
+    private void voteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voteBtnMouseClicked
+        ArrayList<String> temp = new ArrayList<>();
+        
+        temp.add(president);
+        temp.add(vPresident);
+        Storage.getCandidate(president, "President").addVote();
+        Storage.getCandidate(vPresident, "Vice_President").addVote();
+        for(String s : senators){
+            Storage.getCandidate(s, "Senator").addVote();
+            temp.add(s);
+        }
+        for(String s : distReps){
+            Storage.getCandidate(s, "District_Representative").addVote();
+            temp.add(s);
+        }
+        temp.add(governor);
+        temp.add(mayor);
+        Storage.getCandidate(governor, "Governor").addVote();
+        Storage.getCandidate(mayor, "Mayor").addVote();
+        
+        Storage.setVoted(temp);
+        new Summary_UI().open();
+        this.dispose();
+    }//GEN-LAST:event_voteBtnMouseClicked
 
     public void open() {
 

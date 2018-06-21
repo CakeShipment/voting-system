@@ -14,8 +14,8 @@ public class Candidate {
         return this.fullName;
     }
     
-    public int getVote(){
-        return this.voteNo;
+    public String getVote(){
+        return Integer.toString(this.voteNo);
     }
     
     public String getCandType (){
@@ -43,6 +43,10 @@ public class Candidate {
     
     public void setVote(int vote){
         this.voteNo += vote;
+    }
+    
+    public void addVote(){
+        ++this.voteNo;
     }
     
     public void setName(String name){
