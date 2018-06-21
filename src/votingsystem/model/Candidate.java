@@ -1,5 +1,4 @@
 package votingsystem.model;
-
 public class Candidate {
     private String fullName;
     private candType pos;
@@ -47,6 +46,10 @@ public class Candidate {
     }
     
     public void setName(String name){
-        this.fullName = name;
+        if(name != ""){
+            this.fullName = name;
+        }else{
+            Storage.removeCandidate(this);
+        }
     }
 }

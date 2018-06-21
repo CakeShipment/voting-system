@@ -114,7 +114,26 @@ public class Storage {
             case "Mayor": 
                 return Storage.mayors.get(ndx);
             default:
-                return null;
+                Candidate temp = new Candidate("", stringToType(type),0);
+                Storage.addCandidate(temp);
+                return temp;
+        }
+    }
+    
+    private static Candidate.candType stringToType(String type){
+        switch(type){
+            case "President": 
+                return Candidate.candType.President;
+            case "Vice_President": 
+                return Candidate.candType.Vice_President;
+            case "Senator": 
+                return Candidate.candType.Senator;
+            case "District_Representative": 
+                return Candidate.candType.District_Representative;
+            case "Governor": 
+                return Candidate.candType.Governor;
+            default: 
+                return Candidate.candType.Mayor;
         }
     }
     
@@ -126,22 +145,22 @@ public class Storage {
     public static void removeCandidate(Candidate u){
         switch(u.getCandType()){
             case "President": 
-                Storage.presidents.remove(u);
+                Storage.presidents.remove(getCandNdx(u));
                 break;
             case "Vice_President": 
-                Storage.vice_presidents.remove(u);
+                Storage.vice_presidents.remove(getCandNdx(u));
                 break;
             case "Senator": 
-                Storage.senators.remove(u);
+                Storage.senators.remove(getCandNdx(u));
                 break;
             case "District_Representative": 
-                Storage.district_representatives.remove(u);
+                Storage.district_representatives.remove(getCandNdx(u));
                 break;
             case "Governor": 
-                Storage.governors.remove(u);
+                Storage.governors.remove(getCandNdx(u));
                 break;
             case "Mayor": 
-                Storage.mayors.remove(u);
+                Storage.mayors.remove(getCandNdx(u));
         }
     }
 
