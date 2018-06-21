@@ -1,48 +1,44 @@
 package votingsystem.form;
+import java.util.*;
 import votingsystem.model.Storage;
 
 public class Voter_UI extends javax.swing.JFrame {
     
     private String president;
     private String vPresident;
-    private String senators[] = new String[5];
-    private String distReps[] = new String[4];
+    private Set<String> senators = new HashSet<>();
+    private Set<String> distReps = new HashSet<>();
     private String governor;
     private String mayor;
+    
+    
     
     public Voter_UI() {
         initComponents();
     }
     
     private String[] getCandidates(String type){
-        switch(type){
-            case "President":
-                return new String[] {
-                    Storage.getCandidate(0, "President").getFullName(),
-                    Storage.getCandidate(1, "President").getFullName(),
-                    Storage.getCandidate(2, "President").getFullName()
-                };
-            case "Vice_President": 
-                return new String[] {
-                    Storage.getCandidate(0, "Vice_President").getFullName(),
-                    Storage.getCandidate(1, "Vice_President").getFullName(),
-                    Storage.getCandidate(2, "Vice_President").getFullName()
-                };
-            case "Senator": 
-            case "District_Representative": 
-            case "Governor": 
-                return new String[] {
-                    Storage.getCandidate(0, "Governor").getFullName(),
-                    Storage.getCandidate(1, "Governor").getFullName(),
-                    Storage.getCandidate(2, "Governor").getFullName()
-                };
-            default: 
-                return new String[] {
-                    Storage.getCandidate(0, "Mayor").getFullName(),
-                    Storage.getCandidate(1, "Mayor").getFullName(),
-                    Storage.getCandidate(2, "Mayor").getFullName()
-                };
+        String temp[] = new String[3];
+        
+        for(int i = 0; i < 3; i++){
+            Storage.getCandidate(i, type).getFullName();
         }
+        
+        return temp;
+    }
+    
+    private String[] getSenators(){
+        Set<String> set = new HashSet<>();
+        
+        for(int i = 0; i < 10; i++){
+            set.add(Storage.getCandidate(i, "Senator").getFullName());
+        }
+          
+        if(senators.isEmpty()){
+            return set.toArray(new String[set.size()]);
+        }
+        
+        return null;
     }
 
     @SuppressWarnings("unchecked")
@@ -82,6 +78,11 @@ public class Voter_UI extends javax.swing.JFrame {
         jLabel3.setText("Senators");
 
         senatorSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        senatorSelect1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senatorSelect1MouseClicked(evt);
+            }
+        });
 
         senatorSelect2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate"  }));
 
@@ -92,8 +93,18 @@ public class Voter_UI extends javax.swing.JFrame {
         senatorSelect5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
 
         presidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        presidentSelect.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                presidentSelectMouseClicked(evt);
+            }
+        });
 
         vPresidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Candidate" }));
+        vPresidentSelect.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                vPresidentSelectMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -226,6 +237,18 @@ public class Voter_UI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void presidentSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_presidentSelectMouseClicked
+        presidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("President")));
+    }//GEN-LAST:event_presidentSelectMouseClicked
+
+    private void vPresidentSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPresidentSelectMouseClicked
+        vPresidentSelect.setModel(new javax.swing.DefaultComboBoxModel<>(getCandidates("Vice_President")));
+    }//GEN-LAST:event_vPresidentSelectMouseClicked
+
+    private void senatorSelect1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senatorSelect1MouseClicked
+        senatorSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(getSenators()));
+    }//GEN-LAST:event_senatorSelect1MouseClicked
 
     public void open() {
 
