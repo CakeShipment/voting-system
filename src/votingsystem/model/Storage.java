@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Storage {
     private static ArrayList<User> personsUser = new ArrayList();
-    //private static ArrayList<Candidate> candidate = new ArrayList();
     
     private static ArrayList<Candidate> presidents = new ArrayList();
     private static ArrayList<Candidate> vice_presidents = new ArrayList();
@@ -11,7 +10,17 @@ public class Storage {
     private static ArrayList<Candidate> district_representatives = new ArrayList();
     private static ArrayList<Candidate> governors = new ArrayList();
     private static ArrayList<Candidate> mayors = new ArrayList();
-    public static boolean editable = true; 
+    
+    private static boolean editable = true; 
+    
+    //EDITABLE FLAG METHODS-----------------------------------------------------
+    public static boolean editable(){//return true/fals
+        return editable;
+    }
+    
+    public static void uneditable(){//sets to false
+        editable = false;
+    }
     
     //ADDING TO LISTS-----------------------------------------------------------
     public static void addUser(User p){
@@ -38,7 +47,6 @@ public class Storage {
             case "Mayor": 
                 mayors.add(o);
         }
-        //Storage.candidate.add(o);
     }
     
     //GETTERS-------------------------------------------------------------------
@@ -53,10 +61,6 @@ public class Storage {
         return Storage.personsUser.get(ndx);
     }
     
-//    public static ArrayList getCandList(){ 
-//        return Storage.candidate;
-//    }
-//    
     public static int getCandNdx(Candidate u){
         switch(u.getCandType()){
             case "President": 
@@ -76,6 +80,25 @@ public class Storage {
         }
     }
     
+    public static ArrayList<Candidate> getCandList(String type){
+       switch(type){
+            case "President": 
+                return Storage.presidents;
+            case "Vice_President": 
+                return Storage.vice_presidents;
+            case "Senator": 
+                return Storage.senators;
+            case "District_Representative": 
+                return Storage.district_representatives;
+            case "Governor": 
+                return Storage.governors;
+            case "Mayor": 
+                return Storage.mayors;
+            default:
+                return null;
+        }
+    }
+    
     public static Candidate getCandidate(int ndx, String type){
        switch(type){
             case "President": 
@@ -91,7 +114,7 @@ public class Storage {
             case "Mayor": 
                 return Storage.mayors.get(ndx);
             default:
-                return new Candidate("Error",Candidate.candType.Error,0);
+                return null;
         }
     }
     
