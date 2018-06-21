@@ -81,6 +81,7 @@ public class Superuser_UI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        UserTab.setGridColor(new java.awt.Color(255, 204, 204));
         jScrollPane1.setViewportView(UserTab);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -103,12 +104,12 @@ public class Superuser_UI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AddButton)
-                .addGap(18, 18, 18)
                 .addComponent(Toggle)
-                .addGap(22, 22, 22))
+                .addGap(18, 18, 18)
+                .addComponent(AddButton)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +169,10 @@ public class Superuser_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_ToggleActionPerformed
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-        // TODO add your handling code here:
+        AddUser_UI au = new AddUser_UI();
+        au.pack();
+        au.setLocationRelativeTo(null);
+        au.setVisible(true);
     }//GEN-LAST:event_AddButtonActionPerformed
 
     /**

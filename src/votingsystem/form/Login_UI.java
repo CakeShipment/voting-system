@@ -103,20 +103,20 @@ public class Login_UI extends javax.swing.JFrame {
                 Superuser_UI su = new Superuser_UI();
                 su.pack();
                 su.setLocationRelativeTo(null);
-                su.open();
+                su.setVisible(true);
                 break;
                 case "Officer":
                 Officer_UI of = new Officer_UI();
                 of.pack();
                 of.setLocationRelativeTo(null);
-                of.open();
+                of.setVisible(true);
                 break;
                 case "Voter":
                 System.out.println("Voter");
                 Voter_UI vt = new Voter_UI();
                 vt.pack();
                 vt.setLocationRelativeTo(null);
-                vt.open();
+                vt.setVisible(true);
                 break;
             }
             this.dispose();
