@@ -4,10 +4,14 @@ Hello World!
 
 The project is currently in Development:
   Things that will be implemented:
+  
 -----------
-    SuperUser
+    UI
 -----------
-    Officer
+    Functionalities
+      Think of this
 -----------
-    Voter
+    User 
+      Age
+      Birthday
 -----------
