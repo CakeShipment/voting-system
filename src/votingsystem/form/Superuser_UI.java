@@ -29,7 +29,7 @@ public class Superuser_UI extends javax.swing.JFrame {
     
     public String opt = "Delete";
     private DefaultTableModel tableModel;
-    
+    private DefaultTableModel model;
     
     public Superuser_UI() {
         initComponents();
@@ -51,6 +51,8 @@ public class Superuser_UI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         Toggle = new javax.swing.JButton();
         AddButton = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
+        update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,12 +102,29 @@ public class Superuser_UI extends javax.swing.JFrame {
             }
         });
 
+        logout.setText("Log-Out");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(update)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Toggle)
                 .addGap(18, 18, 18)
                 .addComponent(AddButton)
@@ -117,7 +136,9 @@ public class Superuser_UI extends javax.swing.JFrame {
                 .addGap(0, 18, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddButton)
-                    .addComponent(Toggle))
+                    .addComponent(Toggle)
+                    .addComponent(logout)
+                    .addComponent(update))
                 .addContainerGap())
         );
 
@@ -175,6 +196,18 @@ public class Superuser_UI extends javax.swing.JFrame {
         au.setVisible(true);
     }//GEN-LAST:event_AddButtonActionPerformed
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        Login_UI login = new Login_UI();
+        login.pack();
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        this.UpdateTable();
+    }//GEN-LAST:event_updateActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,6 +228,27 @@ public class Superuser_UI extends javax.swing.JFrame {
                 new Superuser_UI().setVisible(true);
             }
         });
+    }
+    
+    private void clearRows() {
+        int rowCount = UserTab.getRowCount();
+
+        for (int i = rowCount - 1; i >= 0; i--) {
+            this.model.removeRow(i);
+        }
+    }
+    
+    public void UpdateTable(){
+        this.clearRows();
+        ArrayList<User> Ulists = Storage.getUserList();
+        for(User li: Ulists){
+            String s = li.getClass().getName();
+            s = s.replace("votingsystem.model.", "");
+            if(!s.equals("Superuser")){
+                Object[] row = {li.getID(),li.getName(),li.getAge(),s};
+                this.model.addRow(row);
+            }
+        }
     }
     
    public void initTab(){
@@ -222,7 +276,8 @@ public class Superuser_UI extends javax.swing.JFrame {
             }
         });
         
-        DefaultTableModel model = (DefaultTableModel) UserTab.getModel();
+        
+        this.model = (DefaultTableModel) UserTab.getModel();
         ArrayList<User> Ulists = Storage.getUserList();
         for(User li: Ulists){
             String s = li.getClass().getName();
@@ -255,5 +310,7 @@ public class Superuser_UI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

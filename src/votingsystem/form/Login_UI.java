@@ -90,10 +90,16 @@ public class Login_UI extends javax.swing.JFrame {
 
     private void login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttonActionPerformed
         int userSize  = Storage.getUserList().size();
-        int i;
+        int i, temp = 999;
         boolean flag = false;
         String s;
-        for(i = 0; i < userSize && (!Storage.getUser(i).getName().equals(username_field.getText()) && !Storage.getUser(i).getPass().equals(password_field.getText())); i++){}
+        for(i = 0; i < userSize && flag == false; i++){
+            if(Storage.getUser(i).getName().equals(username_field.getText()) && Storage.getUser(i).getPass().equals(password_field.getText())){
+                flag = true;
+                temp = i;
+            }
+        }
+        i = temp;
         if(i <= userSize){
             s = Storage.getUser(i).getClass().getName();
             s = s.replace("votingsystem.model.", "");
