@@ -16,7 +16,7 @@ public class Storage {
     private static boolean editable = true; 
     
     //EDITABLE FLAG METHODS-----------------------------------------------------
-    public static boolean editable(){//return true/fals
+    public static boolean editable(){//return true/false
         return editable;
     }
     

@@ -2,7 +2,7 @@ package votingsystem;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+//import java.util.Date;
 import votingsystem.model.Storage;
 import votingsystem.model.Candidate;
 import votingsystem.model.Superuser;

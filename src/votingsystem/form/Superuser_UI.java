@@ -198,15 +198,11 @@ public class Superuser_UI extends javax.swing.JFrame {
         AddUser_UI au = new AddUser_UI();
         au.pack();
         au.setLocationRelativeTo(null);
-        au.setVisible(true);
+        au.open();
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        Login_UI login = new Login_UI();
-        login.pack();
-        login.setLocationRelativeTo(null);
-        login.setVisible(true);
-        this.setVisible(false);
+        new Login_UI().open();
     }//GEN-LAST:event_logoutActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
