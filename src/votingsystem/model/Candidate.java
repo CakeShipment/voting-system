@@ -1,5 +1,4 @@
 package votingsystem.model;
-
 public class Candidate {
     private String fullName;
     private candType pos;
@@ -15,8 +14,8 @@ public class Candidate {
         return this.fullName;
     }
     
-    public int getVote(){
-        return this.voteNo;
+    public String getVote(){
+        return Integer.toString(this.voteNo);
     }
     
     public String getCandType (){
@@ -39,14 +38,22 @@ public class Candidate {
     }
     
     public enum candType{
-        President,Vice_President,Senator,District_Representative,Governor,Mayor,Error
+        President,Vice_President,Senator,District_Representative,Governor,Mayor
     }
     
     public void setVote(int vote){
         this.voteNo += vote;
     }
     
+    public void addVote(){
+        ++this.voteNo;
+    }
+    
     public void setName(String name){
-        this.fullName = name;
+        if(name != ""){
+            this.fullName = name;
+        }else{
+            Storage.removeCandidate(this);
+        }
     }
 }

@@ -48,7 +48,7 @@ public class Voter extends User{
                 vList.addVSenator(senList.get(y));
             }
             
-            Storage.editable = false;
+            Storage.uneditable();
             
             return true;
         }else{

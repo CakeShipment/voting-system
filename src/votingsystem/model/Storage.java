@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Storage {
     private static ArrayList<User> personsUser = new ArrayList();
-    //private static ArrayList<Candidate> candidate = new ArrayList();
     
     private static ArrayList<Candidate> presidents = new ArrayList();
     private static ArrayList<Candidate> vice_presidents = new ArrayList();
@@ -11,7 +10,19 @@ public class Storage {
     private static ArrayList<Candidate> district_representatives = new ArrayList();
     private static ArrayList<Candidate> governors = new ArrayList();
     private static ArrayList<Candidate> mayors = new ArrayList();
-    public static boolean editable = true; 
+    
+    static ArrayList<String> voted = new ArrayList<>();
+    
+    private static boolean editable = true; 
+    
+    //EDITABLE FLAG METHODS-----------------------------------------------------
+    public static boolean editable(){//return true/fals
+        return editable;
+    }
+    
+    public static void uneditable(){//sets to false
+        editable = false;
+    }
     
     //ADDING TO LISTS-----------------------------------------------------------
     public static void addUser(User p){
@@ -38,10 +49,17 @@ public class Storage {
             case "Mayor": 
                 mayors.add(o);
         }
-        //Storage.candidate.add(o);
+    }
+    
+    public static void setVoted(ArrayList<String> c){
+        voted.addAll(c);
     }
     
     //GETTERS-------------------------------------------------------------------
+    public static ArrayList<String> getVoted(){
+        return voted;
+    }
+    
     public static ArrayList getUserList(){
         return Storage.personsUser;
     }
@@ -53,10 +71,6 @@ public class Storage {
         return Storage.personsUser.get(ndx);
     }
     
-//    public static ArrayList getCandList(){ 
-//        return Storage.candidate;
-//    }
-//    
     public static int getCandNdx(Candidate u){
         switch(u.getCandType()){
             case "President": 
@@ -76,6 +90,25 @@ public class Storage {
         }
     }
     
+    public static ArrayList<Candidate> getCandList(String type){
+       switch(type){
+            case "President": 
+                return Storage.presidents;
+            case "Vice_President": 
+                return Storage.vice_presidents;
+            case "Senator": 
+                return Storage.senators;
+            case "District_Representative": 
+                return Storage.district_representatives;
+            case "Governor": 
+                return Storage.governors;
+            case "Mayor": 
+                return Storage.mayors;
+            default:
+                return null;
+        }
+    }
+    
     public static Candidate getCandidate(int ndx, String type){
        switch(type){
             case "President": 
@@ -91,7 +124,54 @@ public class Storage {
             case "Mayor": 
                 return Storage.mayors.get(ndx);
             default:
-                return new Candidate("Error",Candidate.candType.Error,0);
+                Candidate temp = new Candidate("", stringToType(type),0);
+                Storage.addCandidate(temp);
+                return temp;
+        }
+    }
+    
+    public static Candidate getCandidate(String name, String type){
+        int i = 0;
+        switch(type){
+            case "President": 
+                while(i < Storage.presidents.size() && !Storage.presidents.get(i).getFullName().equals(name)){ i++; }
+                return Storage.presidents.get(i);
+            case "Vice_President": 
+                while(i < Storage.vice_presidents.size() && !Storage.vice_presidents.get(i).getFullName().equals(name)){ i++; }
+                return Storage.vice_presidents.get(i);
+            case "Senator": 
+                while(i < Storage.senators.size() && !Storage.senators.get(i).getFullName().equals(name)){ i++; }
+                return Storage.senators.get(i);
+            case "District_Representative": 
+                while(i < Storage.district_representatives.size() && !Storage.district_representatives.get(i).getFullName().equals(name)){ i++; }
+                return Storage.district_representatives.get(i);
+            case "Governor": 
+                while(i < Storage.governors.size() && !Storage.governors.get(i).getFullName().equals(name)){ i++; }
+                return Storage.governors.get(i);
+            case "Mayor": 
+                while(i < Storage.mayors.size() && !Storage.mayors.get(i).getFullName().equals(name)){ i++; }
+                return Storage.mayors.get(i);
+            default:
+                Candidate temp = new Candidate("", stringToType(type),0);
+                Storage.addCandidate(temp);
+                return temp;
+        }
+    }
+    
+    private static Candidate.candType stringToType(String type){
+        switch(type){
+            case "President": 
+                return Candidate.candType.President;
+            case "Vice_President": 
+                return Candidate.candType.Vice_President;
+            case "Senator": 
+                return Candidate.candType.Senator;
+            case "District_Representative": 
+                return Candidate.candType.District_Representative;
+            case "Governor": 
+                return Candidate.candType.Governor;
+            default: 
+                return Candidate.candType.Mayor;
         }
     }
     
@@ -103,22 +183,22 @@ public class Storage {
     public static void removeCandidate(Candidate u){
         switch(u.getCandType()){
             case "President": 
-                Storage.presidents.remove(u);
+                Storage.presidents.remove(getCandNdx(u));
                 break;
             case "Vice_President": 
-                Storage.vice_presidents.remove(u);
+                Storage.vice_presidents.remove(getCandNdx(u));
                 break;
             case "Senator": 
-                Storage.senators.remove(u);
+                Storage.senators.remove(getCandNdx(u));
                 break;
             case "District_Representative": 
-                Storage.district_representatives.remove(u);
+                Storage.district_representatives.remove(getCandNdx(u));
                 break;
             case "Governor": 
-                Storage.governors.remove(u);
+                Storage.governors.remove(getCandNdx(u));
                 break;
             case "Mayor": 
-                Storage.mayors.remove(u);
+                Storage.mayors.remove(getCandNdx(u));
         }
     }
 

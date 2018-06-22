@@ -47,6 +47,7 @@ public class VotingSystem {
         Storage.addCandidate(new Candidate("Wilborn Ji-Ying",Candidate.candType.District_Representative,0));
         Storage.addCandidate(new Candidate("Wilburn Ji-Yeong",Candidate.candType.District_Representative,0));
         
+        //ADDING GOVERNORS------------------------------------------------------
         Storage.addCandidate(new Candidate("Bill Richardson",Candidate.candType.Governor,0));
         Storage.addCandidate(new Candidate("Tom Vilsak",Candidate.candType.Governor,0));
         Storage.addCandidate(new Candidate("Mike Huckabee",Candidate.candType.Governor,0));
@@ -73,6 +74,6 @@ public class VotingSystem {
         Login_UI login = new Login_UI();
         login.pack();
         login.setLocationRelativeTo(null);
-        login.open();
+        login.setVisible(true);
     }   
 }

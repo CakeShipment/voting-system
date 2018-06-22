@@ -1,13 +1,53 @@
 package votingsystem.form;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import votingsystem.model.Storage;
 
 public class Officer_UI extends javax.swing.JFrame {
 
     public Officer_UI() {
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         initComponents();
-        if(!Storage.editable){
+        setPlaceholders();
+        if(!Storage.editable()){
             disableEdit();
         }
+    }
+    
+    private void setPlaceholders(){
+        president1.setText(Storage.getCandidate(0, "President").getFullName());
+        president2.setText(Storage.getCandidate(1, "President").getFullName());
+        president3.setText(Storage.getCandidate(2, "President").getFullName());
+        vPresident1.setText(Storage.getCandidate(0, "Vice_President").getFullName());
+        vPresident2.setText(Storage.getCandidate(1, "Vice_President").getFullName());
+        vPresident3.setText(Storage.getCandidate(2, "Vice_President").getFullName());
+        senator1.setText(Storage.getCandidate(0, "Senator").getFullName());
+        senator2.setText(Storage.getCandidate(1, "Senator").getFullName());
+        senator3.setText(Storage.getCandidate(2, "Senator").getFullName());
+        senator4.setText(Storage.getCandidate(3, "Senator").getFullName());
+        senator5.setText(Storage.getCandidate(4, "Senator").getFullName());
+        senator6.setText(Storage.getCandidate(5, "Senator").getFullName());
+        senator7.setText(Storage.getCandidate(6, "Senator").getFullName());
+        senator8.setText(Storage.getCandidate(7, "Senator").getFullName());
+        senator9.setText(Storage.getCandidate(8, "Senator").getFullName());
+        senator10.setText(Storage.getCandidate(9, "Senator").getFullName());
+        disRepresentative1.setText(Storage.getCandidate(0, "District_Representative").getFullName());
+        disRepresentative2.setText(Storage.getCandidate(1, "District_Representative").getFullName());
+        disRepresentative3.setText(Storage.getCandidate(2, "District_Representative").getFullName());
+        disRepresentative4.setText(Storage.getCandidate(3, "District_Representative").getFullName());
+        disRepresentative5.setText(Storage.getCandidate(4, "District_Representative").getFullName());
+        disRepresentative6.setText(Storage.getCandidate(5, "District_Representative").getFullName());
+        disRepresentative7.setText(Storage.getCandidate(6, "District_Representative").getFullName());
+        disRepresentative8.setText(Storage.getCandidate(7, "District_Representative").getFullName());
+        disRepresentative9.setText(Storage.getCandidate(8, "District_Representative").getFullName());
+        disRepresentative10.setText(Storage.getCandidate(9, "District_Representative").getFullName());
+        governor1.setText(Storage.getCandidate(0, "Governor").getFullName());
+        governor2.setText(Storage.getCandidate(1, "Governor").getFullName());
+        governor3.setText(Storage.getCandidate(2, "Governor").getFullName());
+        mayor1.setText(Storage.getCandidate(0, "Mayor").getFullName());
+        mayor2.setText(Storage.getCandidate(1, "Mayor").getFullName());
+        mayor3.setText(Storage.getCandidate(2, "Mayor").getFullName());
     }
     
     private void disableEdit(){
@@ -17,7 +57,6 @@ public class Officer_UI extends javax.swing.JFrame {
         vPresident1.setEditable(false);
         vPresident2.setEditable(false);
         vPresident3.setEditable(false);
-        senator1.setEditable(false);
         senator1.setEditable(false);
         senator2.setEditable(false);
         senator3.setEditable(false);
@@ -94,6 +133,7 @@ public class Officer_UI extends javax.swing.JFrame {
         governor1 = new javax.swing.JTextField();
         governor2 = new javax.swing.JTextField();
         governor3 = new javax.swing.JTextField();
+        closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -354,23 +394,33 @@ public class Officer_UI extends javax.swing.JFrame {
                 .addComponent(governor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        closeButton.setText("Close / Update");
+        closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -390,11 +440,54 @@ public class Officer_UI extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(closeButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
+        new Login_UI().open();
+        
+        if(Storage.editable()){
+            Storage.getCandidate(0, "President").setName(president1.getText());
+            Storage.getCandidate(1, "President").setName(president2.getText());
+            Storage.getCandidate(2, "President").setName(president3.getText());
+            Storage.getCandidate(0, "Vice_President").setName(vPresident1.getText());
+            Storage.getCandidate(1, "Vice_President").setName(vPresident2.getText());
+            Storage.getCandidate(2, "Vice_President").setName(vPresident3.getText());
+            Storage.getCandidate(0, "Governor").setName(governor1.getText());
+            Storage.getCandidate(1, "Governor").setName(governor2.getText());
+            Storage.getCandidate(2, "Governor").setName(governor3.getText());
+            Storage.getCandidate(0, "Mayor").setName(mayor1.getText());
+            Storage.getCandidate(1, "Mayor").setName(mayor2.getText());
+            Storage.getCandidate(2, "Mayor").setName(mayor3.getText());
+            Storage.getCandidate(0, "Senator").setName(senator1.getText());
+            Storage.getCandidate(1, "Senator").setName(senator2.getText());
+            Storage.getCandidate(2, "Senator").setName(senator3.getText());
+            Storage.getCandidate(3, "Senator").setName(senator4.getText());
+            Storage.getCandidate(4, "Senator").setName(senator5.getText());
+            Storage.getCandidate(5, "Senator").setName(senator6.getText());
+            Storage.getCandidate(6, "Senator").setName(senator7.getText());
+            Storage.getCandidate(7, "Senator").setName(senator8.getText());
+            Storage.getCandidate(8, "Senator").setName(senator9.getText());
+            Storage.getCandidate(9, "Senator").setName(senator10.getText());
+            Storage.getCandidate(0, "District_Representative").setName(disRepresentative1.getText());
+            Storage.getCandidate(1, "District_Representative").setName(disRepresentative2.getText());
+            Storage.getCandidate(2, "District_Representative").setName(disRepresentative3.getText());
+            Storage.getCandidate(3, "District_Representative").setName(disRepresentative4.getText());
+            Storage.getCandidate(4, "District_Representative").setName(disRepresentative5.getText());
+            Storage.getCandidate(5, "District_Representative").setName(disRepresentative6.getText());
+            Storage.getCandidate(6, "District_Representative").setName(disRepresentative7.getText());
+            Storage.getCandidate(7, "District_Representative").setName(disRepresentative8.getText());
+            Storage.getCandidate(8, "District_Representative").setName(disRepresentative9.getText());
+            Storage.getCandidate(9, "District_Representative").setName(disRepresentative10.getText());
+        }
+            
+        this.dispose();
+    }//GEN-LAST:event_closeButtonMouseClicked
 
     public void open() {
 
@@ -415,6 +508,7 @@ public class Officer_UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeButton;
     private javax.swing.JTextField disRepresentative1;
     private javax.swing.JTextField disRepresentative10;
     private javax.swing.JTextField disRepresentative2;
