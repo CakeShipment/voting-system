@@ -14,6 +14,13 @@ public class Officer_UI extends javax.swing.JFrame {
         if(!Storage.editable()){
             disableEdit();
         }
+        
+        System.out.println("President - " + Storage.getCandList("President").size());
+        System.out.println("Vice_President - " + Storage.getCandList("Vice_President").size());
+        System.out.println("Senator - " + Storage.getCandList("Senator").size());
+        System.out.println("District_Representative - " + Storage.getCandList("District_Representative").size());
+        System.out.println("Governor - " + Storage.getCandList("Governor").size());
+        System.out.println("Mayor - " + Storage.getCandList("Mayor").size());
     }
     
     private void setPlaceholders(){
@@ -527,15 +534,14 @@ public class Officer_UI extends javax.swing.JFrame {
             takeInput(disRepresentative9.getText(), "District_Representative", 8);
             takeInput(disRepresentative10.getText(), "District_Representative", 9);
         }
-        
         this.dispose();
     }//GEN-LAST:event_closeButtonMouseClicked
 
     private void takeInput(String in, String type, int indx){
-        if(!in.equals("") && indx == Storage.getCandList(type).size()){
+        if(in.equals("") && indx < Storage.getCandList(type).size()){
+            Storage.getCandList(type).remove(Storage.getCandidate(indx, type));
+        }else if(!in.equals("") && indx == Storage.getCandList(type).size()){
             Storage.addCandidate(new Candidate(in, Storage.stringToType(type), 0));
-        }else if(in.equals("") && indx < Storage.getCandList(type).size()){
-            Storage.removeCandidate(Storage.getCandidate(indx, type));
         }else if(!Storage.getCandidate(indx, type).getFullName().equals(in)){
             Storage.getCandidate(indx, type).setName(in);
         }

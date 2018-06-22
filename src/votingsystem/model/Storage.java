@@ -142,7 +142,6 @@ public class Storage {
             }
         }catch(java.lang.IndexOutOfBoundsException e){
             return getCandidate(ndx - 1, type);
-//            return new Candidate("", stringToType(type),0);
         }
             
     }
@@ -204,22 +203,22 @@ public class Storage {
     public static void removeCandidate(Candidate u){
         switch(u.getCandType()){
             case "President": 
-                Storage.presidents.remove(getCandNdx(u));
+                Storage.presidents.remove(u);
                 break;
             case "Vice_President": 
-                Storage.vice_presidents.remove(getCandNdx(u));
+                Storage.vice_presidents.remove(u);
                 break;
             case "Senator": 
-                Storage.senators.remove(getCandNdx(u));
+                Storage.senators.remove(u);
                 break;
             case "District_Representative": 
-                Storage.district_representatives.remove(getCandNdx(u));
+                Storage.district_representatives.remove(u);
                 break;
             case "Governor": 
-                Storage.governors.remove(getCandNdx(u));
+                Storage.governors.remove(u);
                 break;
             case "Mayor": 
-                Storage.mayors.remove(getCandNdx(u));
+                Storage.mayors.remove(u);
         }
     }
 

@@ -50,10 +50,6 @@ public class Candidate {
     }
     
     public void setName(String name){
-        if(!name.equals("")){
-            this.fullName = name;
-        }else{
-            Storage.removeCandidate(this);
-        }
+        this.fullName = name;
     }
 }
