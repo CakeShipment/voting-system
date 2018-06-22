@@ -577,6 +577,12 @@ public class Voter_UI extends javax.swing.JFrame {
         Storage.getUser(Storage.getUserIndx()).voted();
         Storage.uneditable();
         Storage.setVoted(temp);
+        
+        int i;
+        for(i=0; i < 13; i++){
+            val[i] = 0;
+        }
+        
         new Summary_UI().open();
         this.dispose();
     }//GEN-LAST:event_voteBtnMouseClicked
