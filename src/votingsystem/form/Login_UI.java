@@ -21,6 +21,7 @@ public class Login_UI extends javax.swing.JFrame {
         username_field = new javax.swing.JTextField();
         login_button = new javax.swing.JButton();
         password_field = new javax.swing.JPasswordField();
+        loginNotif = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -42,6 +43,9 @@ public class Login_UI extends javax.swing.JFrame {
 
         password_field.setToolTipText("Password");
 
+        loginNotif.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loginNotif.setText("Login");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -53,6 +57,10 @@ public class Login_UI extends javax.swing.JFrame {
                     .addComponent(login_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(password_field, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(119, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loginNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -62,7 +70,9 @@ public class Login_UI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
+                .addContainerGap(96, Short.MAX_VALUE)
+                .addComponent(loginNotif)
+                .addGap(18, 18, 18)
                 .addComponent(username_field, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(password_field, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -72,8 +82,8 @@ public class Login_UI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(128, Short.MAX_VALUE)))
+                    .addComponent(jLabel1)
+                    .addContainerGap(183, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,8 +126,13 @@ public class Login_UI extends javax.swing.JFrame {
                     new Officer_UI().open();
                     break;
                 case "Voter":
-                    new Voter_UI().open();
-                    break;
+                    if(Storage.getUser(i).canVote()){
+                        Storage.setUserIndx(i);
+                        new Voter_UI().open();
+                    }else{
+                        loginNotif.setText("You have already voted!");
+                        return;
+                    }
             }
             this.dispose();
         }
@@ -144,6 +159,7 @@ public class Login_UI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel loginNotif;
     private javax.swing.JButton login_button;
     private javax.swing.JPasswordField password_field;
     private javax.swing.JTextField username_field;

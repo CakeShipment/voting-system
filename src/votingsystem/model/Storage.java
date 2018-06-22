@@ -13,6 +13,8 @@ public class Storage {
     
     static ArrayList<String> voted = new ArrayList<>();
     
+    private static int userIndx;
+    
     private static boolean editable = true; 
     
     //EDITABLE FLAG METHODS-----------------------------------------------------
@@ -53,6 +55,11 @@ public class Storage {
     
     public static void setVoted(ArrayList<String> c){
         voted.addAll(c);
+    }
+    
+    //SETTERS-------------------------------------------------------------------
+    public static void setUserIndx(int i){
+        userIndx = i;
     }
     
     //GETTERS-------------------------------------------------------------------
@@ -173,6 +180,10 @@ public class Storage {
             default: 
                 return Candidate.candType.Mayor;
         }
+    }
+    
+    public static int getUserIndx(){
+        return userIndx;
     }
     
     //REMOVING FROM LISTS-------------------------------------------------------

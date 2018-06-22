@@ -72,9 +72,6 @@ public class VotingSystem {
 //            System.out.println(Storage.getCandidate(i).getFullName());
 //        }
         
-        Login_UI login = new Login_UI();
-        login.pack();
-        login.setLocationRelativeTo(null);
-        login.setVisible(true);
+        new Login_UI().open();
     }   
 }

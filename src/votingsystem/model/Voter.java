@@ -4,18 +4,6 @@ import java.util.Date;
 
 public class Voter extends User{
     
-//    public Voters_Storage vList = new Voters_Storage();
-    private boolean canVote = true;
-    
-    //CAN VOTE METHODS---------------------------------------------------------
-    public boolean canVote(){
-        return canVote;
-    }
-    
-    public void voted(){
-        canVote = false;
-    }
-    
     //CONSTRUCTORS--------------------------------------------------------------
     public Voter() {
         super();

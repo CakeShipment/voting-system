@@ -23,7 +23,6 @@ public class Voter_UI extends javax.swing.JFrame {
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         initComponents();
     }
-    
     private String[] getCandidates(String type){
         if(!type.equals("Senator") && !type.equals("District_Representative")){
             String temp[] = new String[3];
@@ -574,6 +573,8 @@ public class Voter_UI extends javax.swing.JFrame {
         Storage.getCandidate(governor, "Governor").addVote();
         Storage.getCandidate(mayor, "Mayor").addVote();
         
+        System.out.println(Storage.getUser(Storage.getUserIndx()).getName() + " has voted");
+        Storage.getUser(Storage.getUserIndx()).voted();
         Storage.uneditable();
         Storage.setVoted(temp);
         new Summary_UI().open();
