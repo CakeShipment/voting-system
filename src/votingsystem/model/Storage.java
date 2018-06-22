@@ -64,8 +64,6 @@ public class Storage {
     
     //GETTERS-------------------------------------------------------------------
     public static boolean voteOkay(){
-        //delete later
-        System.out.println((presidents.size() + vice_presidents.size() + senators.size() + district_representatives.size() + governors.size() + mayors.size()) + " == 32?");
         return !(presidents.size() + vice_presidents.size() + senators.size() + district_representatives.size() + governors.size() + mayors.size() == 32);
     }
     
@@ -143,9 +141,8 @@ public class Storage {
                     return temp;
             }
         }catch(java.lang.IndexOutOfBoundsException e){
-//            if(ndx == )
-//            return getCandidate(ndx - 1, type);
-            return new Candidate("", stringToType(type),0);
+            return getCandidate(ndx - 1, type);
+//            return new Candidate("", stringToType(type),0);
         }
             
     }
@@ -178,7 +175,7 @@ public class Storage {
         }
     }
     
-    private static Candidate.candType stringToType(String type){
+    public static Candidate.candType stringToType(String type){
         switch(type){
             case "President": 
                 return Candidate.candType.President;
