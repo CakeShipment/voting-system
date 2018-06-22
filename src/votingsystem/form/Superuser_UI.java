@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Collections;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -183,7 +184,7 @@ public class Superuser_UI extends javax.swing.JFrame {
 
     private void ToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToggleActionPerformed
         // TODO add your handling code here:
-        if(opt == "Delete"){
+        if("Delete".equals(Toggle.getText())){
             Toggle.setText("Edit");
             opt = "Edit";
         }else{
@@ -245,13 +246,15 @@ public class Superuser_UI extends javax.swing.JFrame {
     public void UpdateTable(){
         this.clearRows();
         ArrayList<User> Ulists = Storage.getUserList();
+        int x = 0;
         for(User li: Ulists){
             String s = li.getClass().getName();
             s = s.replace("votingsystem.model.", "");
             if(!s.equals("Superuser")){
-                Object[] row = {li.getID(),li.getName(),li.getAge(),s};
+                Object[] row = {x ,li.getName(),li.getAge(),s};
                 this.model.addRow(row);
             }
+            x++;
         }
     }
     
@@ -283,13 +286,15 @@ public class Superuser_UI extends javax.swing.JFrame {
         
         this.model = (DefaultTableModel) UserTab.getModel();
         ArrayList<User> Ulists = Storage.getUserList();
+        int x = 0;
         for(User li: Ulists){
             String s = li.getClass().getName();
             s = s.replace("votingsystem.model.", "");
             if(!s.equals("Superuser")){
-                Object[] row = {li.getID(),li.getName(),li.getAge(),s};
+                Object[] row = {x ,li.getName(),li.getAge(),s};
                 model.addRow(row);
             }
+            x++;
         }
         
         UserTab.addMouseListener(new MouseAdapter() {
@@ -299,10 +304,35 @@ public class Superuser_UI extends javax.swing.JFrame {
                 Point point = mouseEvent.getPoint();
                 int row = table.rowAtPoint(point);
                 int col = table.columnAtPoint(point);
+                int x;
+                Object id;
                  
                 if (mouseEvent.getClickCount() == 2 ) {
+                    
+                    x = table.getSelectedRow();
+                    id = table.getValueAt(x, 0);
+                    
+                    if("Delete".equals(opt)){
+                        if(JOptionPane.showConfirmDialog(rootPane, "Delete: Are you sure?") == 0){
+                            Storage.getUserList().remove((int)id);
+                            UpdateTable();
+                            JOptionPane.showMessageDialog(rootPane, "Deleted Succesfully");
+                        }  
+                    }else{
+                        AddUser_UI au = new AddUser_UI(); 
+                        User type = Storage.getUser((int)id);
+                        String s = type.getClass().getName();
+                        s = s.replace("votingsystem.model.", "");
+                        int i = -1;
+                        i = ("Officer".equals(s)? 0 : 1); 
+                        au.setInit(i, type.getName(), type.getAge(), type.getPass(), type);
+                        au.pack();
+                        au.setLocationRelativeTo(null);
+                        au.setVisible(true);
+                    }
                     // Double click
-                    System.out.println("Col: "+col+" Row:"+row);
+//                    System.out.println("Col: "+col+" Row:"+row);
+//                    System.out.println(table.getSelectedRow());
                 }
             }
         });
