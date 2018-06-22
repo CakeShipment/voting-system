@@ -59,6 +59,7 @@ public class VotingSystem {
         
         //ADDING USERS----------------------------------------------------------
         Storage.addUser(new Superuser("Superuser1", "pass1", 40, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+        Storage.addUser(new Superuser("Superuser2", "pass1", 40, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
         Storage.addUser(new Officer("Officer1", "pass2", 25, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
         Storage.addUser(new Officer("Officer2", "pass3", 30,new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
         Storage.addUser(new Voter("Voter1", "pass4", 18, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));

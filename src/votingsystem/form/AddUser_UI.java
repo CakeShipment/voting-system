@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import votingsystem.model.Officer;
 import votingsystem.model.Storage;
+import votingsystem.model.User;
 import votingsystem.model.Voter;
 
 /**
@@ -18,7 +19,9 @@ import votingsystem.model.Voter;
  * @author Cake
  */
 public class AddUser_UI extends javax.swing.JFrame {
-
+    
+    User u;
+    
     /**
      * Creates new form AddUser_UI
      */
@@ -167,26 +170,46 @@ public class AddUser_UI extends javax.swing.JFrame {
         age = User_Age.getText();
         
         if(!name.isEmpty() && !pass.isEmpty() && !age.isEmpty()){
-            try{
-                iage = Integer.parseInt(age);
-                if(userType.equals("Officer")){
-                    try {
-                        Storage.addUser(new Officer(name, pass, iage,new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
-                        flag = true;
-                    } catch (ParseException ex) {
-                        Logger.getLogger(AddUser_UI.class.getName()).log(Level.SEVERE, null, ex);
+                try{
+                    iage = Integer.parseInt(age);
+                    if("Add".equals(addCard.getText())){
+                        if(userType.equals("Officer")){
+                            try {
+                                Storage.addUser(new Officer(name, pass, iage,new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+                                flag = true;
+                            } catch (ParseException ex) {
+                                Logger.getLogger(AddUser_UI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }else{
+                            try {
+                                Storage.addUser(new Voter(name, pass, iage, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+                                flag = true;
+                            } catch (ParseException ex) {
+                                Logger.getLogger(AddUser_UI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }else{
+                        if(userType.equals("Officer")){
+                            Storage.getUserList().remove(u);
+                            try {
+                                Storage.addUser(new Officer(name, pass, iage,new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+                                flag = true;
+                            } catch (ParseException ex) {
+                                Logger.getLogger(AddUser_UI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }else{
+                            try {
+                                Storage.addUser(new Voter(name, pass, iage, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
+                                flag = true;
+                            } catch (ParseException ex) {
+                                Logger.getLogger(AddUser_UI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                        this.dispose();
                     }
-                }else{
-                    try {
-                        Storage.addUser(new Voter(name, pass, iage, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
-                        flag = true;
-                    } catch (ParseException ex) {
-                        Logger.getLogger(AddUser_UI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                } catch (Exception e) {
+                    Logger.getLogger(AddUser_UI.class.getName()).log(Level.SEVERE, null, e);
                 }
-            } catch (Exception e) {
-                Logger.getLogger(AddUser_UI.class.getName()).log(Level.SEVERE, null, e);
-            }
         }
         if(flag == true){
             warning.setText("");
@@ -199,7 +222,14 @@ public class AddUser_UI extends javax.swing.JFrame {
     private void returnMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnMainActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_returnMainActionPerformed
-
+    public void setInit(int x, String name, String age, String pass, User p){
+        addCard.setText("Edit");
+        User_Type.setSelectedIndex(x);
+        User_Pass.setText(pass);
+        User_Name.setText(name);
+        User_Age.setText(age);
+        u = p;
+    }
     /**
      * @param args the command line arguments
      */
