@@ -185,6 +185,7 @@ public class Superuser_UI extends javax.swing.JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         new Login_UI().open();
+        this.setVisible(false);
     }//GEN-LAST:event_logoutActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
