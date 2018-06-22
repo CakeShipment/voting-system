@@ -67,11 +67,6 @@ public class VotingSystem {
         Storage.addUser(new Voter("Voter3", "pass6", 24, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
         Storage.addUser(new Voter("Voter4", "voter4", 34, new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
         
-//        int candSize = Storage.getCandList().size();
-//        for (int i = 0; i < candSize; i++){
-//            System.out.println(Storage.getCandidate(i).getFullName());
-//        }
-        
         new Login_UI().open();
     }   
 }

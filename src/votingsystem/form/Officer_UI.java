@@ -1,6 +1,7 @@
 package votingsystem.form;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import votingsystem.model.Candidate;
 import votingsystem.model.Storage;
 
 public class Officer_UI extends javax.swing.JFrame {
@@ -13,48 +14,52 @@ public class Officer_UI extends javax.swing.JFrame {
         if(!Storage.editable()){
             disableEdit();
         }
-        //delete later
-        System.out.println(Storage.getCandList("President").size());
-        System.out.println(Storage.getCandList("Vice_President").size());
-        System.out.println(Storage.getCandList("Senator").size());
-        System.out.println(Storage.getCandList("District_Representative").size());
-        System.out.println(Storage.getCandList("Governor").size());
-        System.out.println(Storage.getCandList("Mayor").size());
+        
+        System.out.println("President - " + Storage.getCandList("President").size());
+        System.out.println("Vice_President - " + Storage.getCandList("Vice_President").size());
+        System.out.println("Senator - " + Storage.getCandList("Senator").size());
+        System.out.println("District_Representative - " + Storage.getCandList("District_Representative").size());
+        System.out.println("Governor - " + Storage.getCandList("Governor").size());
+        System.out.println("Mayor - " + Storage.getCandList("Mayor").size());
     }
     
     private void setPlaceholders(){
-        president1.setText(Storage.getCandidate(0, "President").getFullName());
-        president2.setText(Storage.getCandidate(1, "President").getFullName());
-        president3.setText(Storage.getCandidate(2, "President").getFullName());
-        vPresident1.setText(Storage.getCandidate(0, "Vice_President").getFullName());
-        vPresident2.setText(Storage.getCandidate(1, "Vice_President").getFullName());
-        vPresident3.setText(Storage.getCandidate(2, "Vice_President").getFullName());
-        senator1.setText(Storage.getCandidate(0, "Senator").getFullName());
-        senator2.setText(Storage.getCandidate(1, "Senator").getFullName());
-        senator3.setText(Storage.getCandidate(2, "Senator").getFullName());
-        senator4.setText(Storage.getCandidate(3, "Senator").getFullName());
-        senator5.setText(Storage.getCandidate(4, "Senator").getFullName());
-        senator6.setText(Storage.getCandidate(5, "Senator").getFullName());
-        senator7.setText(Storage.getCandidate(6, "Senator").getFullName());
-        senator8.setText(Storage.getCandidate(7, "Senator").getFullName());
-        senator9.setText(Storage.getCandidate(8, "Senator").getFullName());
-        senator10.setText(Storage.getCandidate(9, "Senator").getFullName());
-        disRepresentative1.setText(Storage.getCandidate(0, "District_Representative").getFullName());
-        disRepresentative2.setText(Storage.getCandidate(1, "District_Representative").getFullName());
-        disRepresentative3.setText(Storage.getCandidate(2, "District_Representative").getFullName());
-        disRepresentative4.setText(Storage.getCandidate(3, "District_Representative").getFullName());
-        disRepresentative5.setText(Storage.getCandidate(4, "District_Representative").getFullName());
-        disRepresentative6.setText(Storage.getCandidate(5, "District_Representative").getFullName());
-        disRepresentative7.setText(Storage.getCandidate(6, "District_Representative").getFullName());
-        disRepresentative8.setText(Storage.getCandidate(7, "District_Representative").getFullName());
-        disRepresentative9.setText(Storage.getCandidate(8, "District_Representative").getFullName());
-        disRepresentative10.setText(Storage.getCandidate(9, "District_Representative").getFullName());
-        governor1.setText(Storage.getCandidate(0, "Governor").getFullName());
-        governor2.setText(Storage.getCandidate(1, "Governor").getFullName());
-        governor3.setText(Storage.getCandidate(2, "Governor").getFullName());
-        mayor1.setText(Storage.getCandidate(0, "Mayor").getFullName());
-        mayor2.setText(Storage.getCandidate(1, "Mayor").getFullName());
-        mayor3.setText(Storage.getCandidate(2, "Mayor").getFullName());
+        president1.setText(fillName(0, "President"));
+        president2.setText(fillName(1, "President"));
+        president3.setText(fillName(2, "President"));
+        vPresident1.setText(fillName(0, "Vice_President"));
+        vPresident2.setText(fillName(1, "Vice_President"));
+        vPresident3.setText(fillName(2, "Vice_President"));
+        senator1.setText(fillName(0, "Senator"));
+        senator2.setText(fillName(1, "Senator"));
+        senator3.setText(fillName(2, "Senator"));
+        senator4.setText(fillName(3, "Senator"));
+        senator5.setText(fillName(4, "Senator"));
+        senator6.setText(fillName(5, "Senator"));
+        senator7.setText(fillName(6, "Senator"));
+        senator8.setText(fillName(7, "Senator"));
+        senator9.setText(fillName(8, "Senator"));
+        senator10.setText(fillName(9, "Senator"));
+        disRepresentative1.setText(fillName(0, "District_Representative"));
+        disRepresentative2.setText(fillName(1, "District_Representative"));
+        disRepresentative3.setText(fillName(2, "District_Representative"));
+        disRepresentative4.setText(fillName(3, "District_Representative"));
+        disRepresentative5.setText(fillName(4, "District_Representative"));
+        disRepresentative6.setText(fillName(5, "District_Representative"));
+        disRepresentative7.setText(fillName(6, "District_Representative"));
+        disRepresentative8.setText(fillName(7, "District_Representative"));
+        disRepresentative9.setText(fillName(8, "District_Representative"));
+        disRepresentative10.setText(fillName(9, "District_Representative"));
+        governor1.setText(fillName(0, "Governor"));
+        governor2.setText(fillName(1, "Governor"));
+        governor3.setText(fillName(2, "Governor"));
+        mayor1.setText(fillName(0, "Mayor"));
+        mayor2.setText(fillName(1, "Mayor"));
+        mayor3.setText(fillName(2, "Mayor"));
+    }
+    
+    private String fillName(int indx, String type){
+        return (indx < Storage.getCandList(type).size()) ? Storage.getCandidate(indx, type).getFullName() : "";
     }
     
     private void disableEdit(){
@@ -496,43 +501,52 @@ public class Officer_UI extends javax.swing.JFrame {
         new Login_UI().open();
         
         if(Storage.editable()){
-            Storage.getCandidate(0, "President").setName(president1.getText());
-            Storage.getCandidate(1, "President").setName(president2.getText());
-            Storage.getCandidate(2, "President").setName(president3.getText());
-            Storage.getCandidate(0, "Vice_President").setName(vPresident1.getText());
-            Storage.getCandidate(1, "Vice_President").setName(vPresident2.getText());
-            Storage.getCandidate(2, "Vice_President").setName(vPresident3.getText());
-            Storage.getCandidate(0, "Governor").setName(governor1.getText());
-            Storage.getCandidate(1, "Governor").setName(governor2.getText());
-            Storage.getCandidate(2, "Governor").setName(governor3.getText());
-            Storage.getCandidate(0, "Mayor").setName(mayor1.getText());
-            Storage.getCandidate(1, "Mayor").setName(mayor2.getText());
-            Storage.getCandidate(2, "Mayor").setName(mayor3.getText());
-            Storage.getCandidate(0, "Senator").setName(senator1.getText());
-            Storage.getCandidate(1, "Senator").setName(senator2.getText());
-            Storage.getCandidate(2, "Senator").setName(senator3.getText());
-            Storage.getCandidate(3, "Senator").setName(senator4.getText());
-            Storage.getCandidate(4, "Senator").setName(senator5.getText());
-            Storage.getCandidate(5, "Senator").setName(senator6.getText());
-            Storage.getCandidate(6, "Senator").setName(senator7.getText());
-            Storage.getCandidate(7, "Senator").setName(senator8.getText());
-            Storage.getCandidate(8, "Senator").setName(senator9.getText());
-            Storage.getCandidate(9, "Senator").setName(senator10.getText());
-            Storage.getCandidate(0, "District_Representative").setName(disRepresentative1.getText());
-            Storage.getCandidate(1, "District_Representative").setName(disRepresentative2.getText());
-            Storage.getCandidate(2, "District_Representative").setName(disRepresentative3.getText());
-            Storage.getCandidate(3, "District_Representative").setName(disRepresentative4.getText());
-            Storage.getCandidate(4, "District_Representative").setName(disRepresentative5.getText());
-            Storage.getCandidate(5, "District_Representative").setName(disRepresentative6.getText());
-            Storage.getCandidate(6, "District_Representative").setName(disRepresentative7.getText());
-            Storage.getCandidate(7, "District_Representative").setName(disRepresentative8.getText());
-            Storage.getCandidate(8, "District_Representative").setName(disRepresentative9.getText());
-            Storage.getCandidate(9, "District_Representative").setName(disRepresentative10.getText());
+            takeInput(president1.getText(), "President", 0);
+            takeInput(president2.getText(), "President", 1);
+            takeInput(president3.getText(), "President", 2);
+            takeInput(vPresident1.getText(), "Vice_President", 0);
+            takeInput(vPresident2.getText(), "Vice_President", 1);
+            takeInput(vPresident3.getText(), "Vice_President", 2);
+            takeInput(governor1.getText(), "Governor", 0);
+            takeInput(governor2.getText(), "Governor", 1);
+            takeInput(governor3.getText(), "Governor", 2);
+            takeInput(mayor1.getText(), "Mayor", 0);
+            takeInput(mayor2.getText(), "Mayor", 1);
+            takeInput(mayor3.getText(), "Mayor", 2);
+            takeInput(senator1.getText(), "Senator", 0);
+            takeInput(senator2.getText(), "Senator", 1);
+            takeInput(senator3.getText(), "Senator", 2);
+            takeInput(senator4.getText(), "Senator", 3);
+            takeInput(senator5.getText(), "Senator", 4);
+            takeInput(senator6.getText(), "Senator", 5);
+            takeInput(senator7.getText(), "Senator", 6);
+            takeInput(senator8.getText(), "Senator", 7);
+            takeInput(senator9.getText(), "Senator", 8);
+            takeInput(senator10.getText(), "Senator", 9);
+            takeInput(disRepresentative1.getText(), "District_Representative", 0);
+            takeInput(disRepresentative2.getText(), "District_Representative", 1);
+            takeInput(disRepresentative3.getText(), "District_Representative", 2);
+            takeInput(disRepresentative4.getText(), "District_Representative", 3);
+            takeInput(disRepresentative5.getText(), "District_Representative", 4);
+            takeInput(disRepresentative6.getText(), "District_Representative", 5);
+            takeInput(disRepresentative7.getText(), "District_Representative", 6);
+            takeInput(disRepresentative8.getText(), "District_Representative", 7);
+            takeInput(disRepresentative9.getText(), "District_Representative", 8);
+            takeInput(disRepresentative10.getText(), "District_Representative", 9);
         }
-        
         this.dispose();
     }//GEN-LAST:event_closeButtonMouseClicked
 
+    private void takeInput(String in, String type, int indx){
+        if(in.equals("") && indx < Storage.getCandList(type).size()){
+            Storage.getCandList(type).remove(Storage.getCandidate(indx, type));
+        }else if(!in.equals("") && indx == Storage.getCandList(type).size()){
+            Storage.addCandidate(new Candidate(in, Storage.stringToType(type), 0));
+        }else if(!Storage.getCandidate(indx, type).getFullName().equals(in)){
+            Storage.getCandidate(indx, type).setName(in);
+        }
+    }
+    
     public void open() {
 
         try {

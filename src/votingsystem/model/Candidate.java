@@ -50,12 +50,6 @@ public class Candidate {
     }
     
     public void setName(String name){
-        //delete later
-        System.out.println(name);
-        if(!name.equals("")){
-            this.fullName = name;
-        }else{
-            Storage.removeCandidate(this);
-        }
+        this.fullName = name;
     }
 }

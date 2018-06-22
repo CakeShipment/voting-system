@@ -64,8 +64,6 @@ public class Storage {
     
     //GETTERS-------------------------------------------------------------------
     public static boolean voteOkay(){
-        //delete later
-        System.out.println((presidents.size() + vice_presidents.size() + senators.size() + district_representatives.size() + governors.size() + mayors.size()) + " == 32?");
         return !(presidents.size() + vice_presidents.size() + senators.size() + district_representatives.size() + governors.size() + mayors.size() == 32);
     }
     
@@ -143,9 +141,7 @@ public class Storage {
                     return temp;
             }
         }catch(java.lang.IndexOutOfBoundsException e){
-//            if(ndx == )
-//            return getCandidate(ndx - 1, type);
-            return new Candidate("", stringToType(type),0);
+            return getCandidate(ndx - 1, type);
         }
             
     }
@@ -178,7 +174,7 @@ public class Storage {
         }
     }
     
-    private static Candidate.candType stringToType(String type){
+    public static Candidate.candType stringToType(String type){
         switch(type){
             case "President": 
                 return Candidate.candType.President;
@@ -207,22 +203,22 @@ public class Storage {
     public static void removeCandidate(Candidate u){
         switch(u.getCandType()){
             case "President": 
-                Storage.presidents.remove(getCandNdx(u));
+                Storage.presidents.remove(u);
                 break;
             case "Vice_President": 
-                Storage.vice_presidents.remove(getCandNdx(u));
+                Storage.vice_presidents.remove(u);
                 break;
             case "Senator": 
-                Storage.senators.remove(getCandNdx(u));
+                Storage.senators.remove(u);
                 break;
             case "District_Representative": 
-                Storage.district_representatives.remove(getCandNdx(u));
+                Storage.district_representatives.remove(u);
                 break;
             case "Governor": 
-                Storage.governors.remove(getCandNdx(u));
+                Storage.governors.remove(u);
                 break;
             case "Mayor": 
-                Storage.mayors.remove(getCandNdx(u));
+                Storage.mayors.remove(u);
         }
     }
 
