@@ -12,6 +12,18 @@ public class User {
     private int age;
     private Date DOB;
     
+    //FOR VOTERS ONLY-----------------------------------------------------------
+    private boolean canVote = true;
+    
+    //CAN VOTE METHODS----------------------------------------------------------
+    public boolean canVote(){
+        return canVote;
+    }
+    
+    public void voted(){
+        canVote = false;
+    }
+    
     //CONSTRUCTOR CHAINING------------------------------------------------------
     User(){
         this.userId = UUID.randomUUID().toString();

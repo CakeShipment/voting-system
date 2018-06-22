@@ -13,10 +13,12 @@ public class Storage {
     
     static ArrayList<String> voted = new ArrayList<>();
     
+    private static int userIndx;
+    
     private static boolean editable = true; 
     
     //EDITABLE FLAG METHODS-----------------------------------------------------
-    public static boolean editable(){//return true/fals
+    public static boolean editable(){//return true/false
         return editable;
     }
     
@@ -55,7 +57,18 @@ public class Storage {
         voted.addAll(c);
     }
     
+    //SETTERS-------------------------------------------------------------------
+    public static void setUserIndx(int i){
+        userIndx = i;
+    }
+    
     //GETTERS-------------------------------------------------------------------
+    public static boolean voteOkay(){
+        //delete later
+        System.out.println((presidents.size() + vice_presidents.size() + senators.size() + district_representatives.size() + governors.size() + mayors.size()) + " == 32?");
+        return !(presidents.size() + vice_presidents.size() + senators.size() + district_representatives.size() + governors.size() + mayors.size() == 32);
+    }
+    
     public static ArrayList<String> getVoted(){
         return voted;
     }
@@ -110,24 +123,31 @@ public class Storage {
     }
     
     public static Candidate getCandidate(int ndx, String type){
-       switch(type){
-            case "President": 
-                return Storage.presidents.get(ndx);
-            case "Vice_President": 
-                return Storage.vice_presidents.get(ndx);
-            case "Senator": 
-                return Storage.senators.get(ndx);
-            case "District_Representative": 
-                return Storage.district_representatives.get(ndx);
-            case "Governor": 
-                return Storage.governors.get(ndx);
-            case "Mayor": 
-                return Storage.mayors.get(ndx);
-            default:
-                Candidate temp = new Candidate("", stringToType(type),0);
-                Storage.addCandidate(temp);
-                return temp;
+        try{
+            switch(type){
+                case "President": 
+                    return Storage.presidents.get(ndx);
+                case "Vice_President": 
+                    return Storage.vice_presidents.get(ndx);
+                case "Senator": 
+                    return Storage.senators.get(ndx);
+                case "District_Representative": 
+                    return Storage.district_representatives.get(ndx);
+                case "Governor": 
+                    return Storage.governors.get(ndx);
+                case "Mayor": 
+                    return Storage.mayors.get(ndx);
+                default:
+                    Candidate temp = new Candidate("", stringToType(type),0);
+                    Storage.addCandidate(temp);
+                    return temp;
+            }
+        }catch(java.lang.IndexOutOfBoundsException e){
+//            if(ndx == )
+//            return getCandidate(ndx - 1, type);
+            return new Candidate("", stringToType(type),0);
         }
+            
     }
     
     public static Candidate getCandidate(String name, String type){
@@ -173,6 +193,10 @@ public class Storage {
             default: 
                 return Candidate.candType.Mayor;
         }
+    }
+    
+    public static int getUserIndx(){
+        return userIndx;
     }
     
     //REMOVING FROM LISTS-------------------------------------------------------

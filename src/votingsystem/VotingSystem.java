@@ -2,7 +2,7 @@ package votingsystem;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+//import java.util.Date;
 import votingsystem.model.Storage;
 import votingsystem.model.Candidate;
 import votingsystem.model.Superuser;
@@ -72,9 +72,6 @@ public class VotingSystem {
 //            System.out.println(Storage.getCandidate(i).getFullName());
 //        }
         
-        Login_UI login = new Login_UI();
-        login.pack();
-        login.setLocationRelativeTo(null);
-        login.setVisible(true);
+        new Login_UI().open();
     }   
 }

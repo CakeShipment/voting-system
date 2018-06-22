@@ -38,7 +38,6 @@ public class Summary_UI extends javax.swing.JFrame {
     private String summaryFormat(int x, String type){
         String temp = type + "s\n";
         for(int i = 0; i < x; i++){
-            System.out.println(i);
             temp += Storage.getCandidate(i, type).getFullName() + " ----------------- " + Storage.getCandidate(i, type).getVote() + " votes!\n";
         }
         temp += "\n\n";
@@ -89,8 +88,14 @@ public class Summary_UI extends javax.swing.JFrame {
         finish = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(200, 191));
 
         jLabel4.setText("Senators:");
@@ -144,6 +149,7 @@ public class Summary_UI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        sdas.setBackground(new java.awt.Color(255, 255, 255));
         sdas.setPreferredSize(new java.awt.Dimension(200, 62));
 
         jLabel6.setText("Governor:");
@@ -172,6 +178,7 @@ public class Summary_UI extends javax.swing.JFrame {
                 .addComponent(gov))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(200, 62));
 
         jLabel3.setText("Vice President:");
@@ -204,6 +211,7 @@ public class Summary_UI extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Your Votes");
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(200, 162));
 
         jLabel5.setText("District Representatives:");
@@ -248,6 +256,7 @@ public class Summary_UI extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
+        dsadas.setBackground(new java.awt.Color(255, 255, 255));
         dsadas.setPreferredSize(new java.awt.Dimension(200, 62));
 
         jLabel7.setText("Mayor:");
@@ -273,6 +282,7 @@ public class Summary_UI extends javax.swing.JFrame {
                 .addComponent(may))
         );
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(200, 62));
 
         jLabel2.setText("President:");
@@ -344,6 +354,8 @@ public class Summary_UI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("YourVotes", jPanel6);
 
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+
         summary.setEditable(false);
         summary.setBorder(null);
         summary.setContentType("Hello world");
@@ -399,7 +411,7 @@ public class Summary_UI extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(() -> {
-            new Summary_UI().setVisible(true);
+            this.setVisible(true);
         });
     }
 
