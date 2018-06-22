@@ -232,10 +232,8 @@ public class AddUser_UI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AddUser_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
  
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddUser_UI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            this.setVisible(true);
         });
     }
 

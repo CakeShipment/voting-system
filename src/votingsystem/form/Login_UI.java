@@ -126,15 +126,23 @@ public class Login_UI extends javax.swing.JFrame {
                     new Officer_UI().open();
                     break;
                 case "Voter":
+                    if(Storage.voteOkay()){
+                        loginNotif.setText("Voting not open yet!");
+                        System.out.println("Access denied! Voting not open yet");
+                        return;
+                    }
                     if(Storage.getUser(i).canVote()){
                         Storage.setUserIndx(i);
                         new Voter_UI().open();
                     }else{
                         loginNotif.setText("You have already voted!");
+                        System.out.println("Access denied! You have already voted");
                         return;
                     }
             }
             this.dispose();
+        }else{
+            loginNotif.setText("Wrong username or password!");
         }
     }//GEN-LAST:event_login_buttonActionPerformed
 
@@ -152,7 +160,7 @@ public class Login_UI extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(() -> {
-            new Login_UI().setVisible(true);
+            this.setVisible(true);
         });
     }
 

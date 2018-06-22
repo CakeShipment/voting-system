@@ -13,6 +13,13 @@ public class Officer_UI extends javax.swing.JFrame {
         if(!Storage.editable()){
             disableEdit();
         }
+        //delete later
+        System.out.println(Storage.getCandList("President").size());
+        System.out.println(Storage.getCandList("Vice_President").size());
+        System.out.println(Storage.getCandList("Senator").size());
+        System.out.println(Storage.getCandList("District_Representative").size());
+        System.out.println(Storage.getCandList("Governor").size());
+        System.out.println(Storage.getCandList("Mayor").size());
     }
     
     private void setPlaceholders(){
@@ -510,7 +517,7 @@ public class Officer_UI extends javax.swing.JFrame {
             Storage.getCandidate(8, "District_Representative").setName(disRepresentative9.getText());
             Storage.getCandidate(9, "District_Representative").setName(disRepresentative10.getText());
         }
-            
+        
         this.dispose();
     }//GEN-LAST:event_closeButtonMouseClicked
 
@@ -528,7 +535,7 @@ public class Officer_UI extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(() -> {
-            new Officer_UI().setVisible(true);
+            this.setVisible(true);
         });
     }
 

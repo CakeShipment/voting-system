@@ -38,7 +38,6 @@ public class Summary_UI extends javax.swing.JFrame {
     private String summaryFormat(int x, String type){
         String temp = type + "s\n";
         for(int i = 0; i < x; i++){
-            System.out.println(i);
             temp += Storage.getCandidate(i, type).getFullName() + " ----------------- " + Storage.getCandidate(i, type).getVote() + " votes!\n";
         }
         temp += "\n\n";
@@ -412,7 +411,7 @@ public class Summary_UI extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(() -> {
-            new Summary_UI().setVisible(true);
+            this.setVisible(true);
         });
     }
 

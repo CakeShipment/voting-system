@@ -595,7 +595,7 @@ public class Voter_UI extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(() -> {
-            new Voter_UI().setVisible(true);
+            this.setVisible(true);
         });
     }
 

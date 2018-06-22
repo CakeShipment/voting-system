@@ -204,7 +204,7 @@ public class Superuser_UI extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(() -> {
-            new Superuser_UI().setVisible(true);
+            this.setVisible(true);
         });
     }
     
