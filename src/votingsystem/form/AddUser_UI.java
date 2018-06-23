@@ -177,8 +177,8 @@ public class AddUser_UI extends javax.swing.JFrame {
                             }
                         }
                     }else{
+                        Storage.getUserList().remove(u);
                         if(userType.equals("Officer")){
-                            Storage.getUserList().remove(u);
                             try {
                                 Storage.addUser(new Officer(name, pass, iage,new SimpleDateFormat("yyyy/MM/dd").parse("1987/02/01")));
                                 flag = true;
